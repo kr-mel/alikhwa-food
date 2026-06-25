@@ -1,0 +1,15 @@
+# dependencies / build
+node_modules/
+dist/
+package.json
+package-lock.json
+
+# backend (deployed separately on Cloudflare)
+worker/
+
+# internal working files (not for the public repo)
+_incoming/
+IMAGE-PROMPTS.md
+convert-images.mjs
+.wrangler/
+*.log
