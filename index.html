@@ -19,6 +19,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
 
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%232c3315'/%3E%3Cpath d='M16 7c4 2 6 5 6 9a6 6 0 0 1-12 0c0-4 2-7 6-9z' fill='%23e0a43c'/%3E%3C/svg%3E" />
+
   <link rel="stylesheet" href="styles.css" />
 
   <script type="application/ld+json">
@@ -27,8 +29,12 @@
     "@type": "Store",
     "name": "غذائيات الأخوة",
     "description": "زيت زيتون بكر وأعسال طبيعية ومنتجات بيتوتية. توصيل ضمن سوريا وتركيا.",
+    "image": "https://kr-mel.github.io/alikhwa-food/assets/og.jpg",
+    "url": "https://kr-mel.github.io/alikhwa-food/",
     "telephone": "+905068267285",
     "areaServed": ["SY", "TR"],
+    "currenciesAccepted": "TRY",
+    "paymentAccepted": "Cash on delivery",
     "sameAs": ["https://www.instagram.com/alikhwa.food/"]
   }
   </script>
@@ -41,12 +47,12 @@
       <span>💵 الدفع عند الاستلام</span><span>•</span>
       <span>🎁 المجموعة الملكية بعرض خاص — ٢١٥٠ ₺</span><span>•</span>
       <span>🌿 منتجات طبيعية ١٠٠٪</span><span>•</span>
-      <span>🇸🇾 توصيل سوريا و 🇹🇷 تركيا</span><span>•</span>
+      <span>🌿 توصيل سوريا وتركيا</span><span>•</span>
       <span>🚚 توصيل مجاني لباب البيت</span><span>•</span>
       <span>💵 الدفع عند الاستلام</span><span>•</span>
       <span>🎁 المجموعة الملكية بعرض خاص — ٢١٥٠ ₺</span><span>•</span>
       <span>🌿 منتجات طبيعية ١٠٠٪</span><span>•</span>
-      <span>🇸🇾 توصيل سوريا و 🇹🇷 تركيا</span><span>•</span>
+      <span>🌿 توصيل سوريا وتركيا</span><span>•</span>
     </div>
   </div>
 
@@ -57,7 +63,10 @@
         <svg viewBox="0 0 24 24" class="logo__icon" aria-hidden="true"><path d="M12 21s1.5-7 8-9c0 6-5 9-8 9zM12 21s-1.5-7-8-9c0 6 5 9 8 9zM12 21V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="5.5" r="2.4" fill="currentColor"/></svg>
         <span class="logo__text">غذائيات الأخوة</span>
       </a>
-      <nav class="nav" aria-label="التنقل">
+      <button class="nav-toggle" id="navToggle" aria-label="القائمة" aria-expanded="false" aria-controls="primaryNav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="primaryNav" aria-label="التنقل">
         <a href="#products">المتجر</a>
         <a href="#why">لماذا نحن</a>
         <a href="#how">كيف تطلب</a>
@@ -79,9 +88,9 @@
           <a class="btn btn--ghost" id="ctaHeroWa" href="#" target="_blank" rel="noopener">تواصل واتساب</a>
         </div>
         <ul class="hero__stats">
-          <li><strong>٧+</strong><span>سنوات ثقة</span></li>
-          <li><strong>طبيعي</strong><span>بلا إضافات</span></li>
+          <li><strong>١٠٠٪</strong><span>طبيعي</span></li>
           <li><strong>توصيل</strong><span>سوريا وتركيا</span></li>
+          <li><strong>دفع</strong><span>عند الاستلام</span></li>
         </ul>
       </div>
       <div class="hero__media">

@@ -149,6 +149,19 @@ function init() {
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
+  // mobile nav toggle
+  const navToggle = document.getElementById("navToggle");
+  const nav = document.getElementById("primaryNav");
+  if (navToggle && nav) {
+    const setNav = (open) => {
+      nav.classList.toggle("open", open);
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    navToggle.addEventListener("click", () => setNav(!nav.classList.contains("open")));
+    nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setNav(false)));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
+  }
+
   initReveal();
 }
 
