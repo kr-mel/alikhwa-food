@@ -168,7 +168,7 @@ function init() {
   document.getElementById("ctaOffer").href = waLink(orderText(offer));
 
   document.querySelector(".copyright").textContent =
-    `© ${new Date().getFullYear()} متجر الطبيعة — جميع الحقوق محفوظة`;
+    `© ${new Date().getFullYear()} اسم متجرك — جميع الحقوق محفوظة`;
 
   // header scroll state
   const header = document.getElementById("header");
