@@ -1,6 +1,9 @@
-import { business, products, services, serviceCurrency, waLink, orderText } from "./src/data.js";
+import { UI, LANGS, detectLang, setLang } from "./src/i18n.js";
+import { business, products, services, serviceCurrency, CATEGORIES, t, waLink, orderText } from "./src/data.js";
 
-/* ---------- SVG icons (stroke) ---------- */
+let lang = detectLang();
+
+/* ---------- SVG icons ---------- */
 const icon = {
   leaf: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13c0-5 4.5-9 16-9 0 9-5 16-9 16z"/><path d="M11 20c0-5 2-9 8-12"/></svg>',
   truck: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v8H3z"/><path d="M14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>',
@@ -11,199 +14,168 @@ const icon = {
   spark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/></svg>',
   butter: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10l10-4 6 3-10 4z"/><path d="M4 10v5l10 4 6-3v-6"/><path d="M14 13v6"/></svg>',
 };
+const whyIcons = [icon.leaf, icon.truck, icon.wallet, icon.shield];
+const catIcon = { honey: icon.jar, oil: icon.bottle, mix: icon.spark, home: icon.butter };
 
-const catIcon = {
-  "أعسال": icon.jar,
-  "زيت زيتون": icon.bottle,
-  "خلطات": icon.spark,
-  "منتجات بيتوتية": icon.butter,
-};
+const $ = (id) => document.getElementById(id);
+const resolve = (obj, path) => path.split(".").reduce((o, k) => (o ? o[k] : undefined), obj);
+const placeholder = (svg) => `<div class="ph">${svg}</div>`;
 
-function placeholder(svg) {
-  return `<div class="ph">${svg}</div>`;
-}
-
-/* ---------- media frames (hero, feature band) ---------- */
+/* ---------- media frames ---------- */
 function loadFrame(el, fallbackSvg) {
-  const src = el.dataset.img;
-  const alt = el.dataset.alt || "";
   const img = new Image();
-  img.onload = () => { img.alt = alt; el.innerHTML = ""; el.appendChild(img); };
+  img.onload = () => { img.alt = el.dataset.alt || ""; el.innerHTML = ""; el.appendChild(img); };
   img.onerror = () => { el.innerHTML = placeholder(fallbackSvg); };
-  img.src = src;
+  img.src = el.dataset.img;
 }
 
-/* ---------- WHY ---------- */
-const whyItems = [
-  { ic: icon.leaf, t: "طبيعي بلا إضافات", d: "منتجات نقية كما هي من مصدرها، بلا مواد حافظة." },
-  { ic: icon.truck, t: "توصيل لباب البيت", d: "نوصّل طلبك داخل سوريا وتركيا بسرعة وعناية." },
-  { ic: icon.wallet, t: "دفع عند الاستلام", d: "تدفع بعد ما توصلك الطلبية وتطمئن عليها." },
-  { ic: icon.shield, t: "ضمان الجودة", d: "إذا ما عجبك المنتج، حقك محفوظ وبيرجع." },
-];
-
-function whyCard(w) {
-  return `<div class="why__card"><div class="why__icon">${w.ic}</div><h3>${w.t}</h3><p>${w.d}</p></div>`;
+/* ---------- renderers (lang-aware) ---------- */
+function renderStatic() {
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const v = resolve(UI[lang], el.dataset.i18n);
+    if (typeof v === "string") el.textContent = v;
+  });
 }
 
-/* ---------- PRODUCTS ---------- */
+function renderHeroStats() {
+  $("heroStats").innerHTML = UI[lang].hero.stats
+    .map(([n, l]) => `<li><strong>${n}</strong><span>${l}</span></li>`)
+    .join("");
+}
+
+function renderWhy() {
+  $("whyGrid").innerHTML = UI[lang].why.cards
+    .map((c, i) => `<div class="why__card"><div class="why__icon">${whyIcons[i]}</div><h3>${c[0]}</h3><p>${c[1]}</p></div>`)
+    .join("");
+}
+
 function priceHTML(p) {
-  if (p.price == null) return `<span class="price__ask">تواصل للسعر</span>`;
+  if (p.price == null) return `<span class="price__ask">${UI[lang].products.ask}</span>`;
   const was = p.oldPrice ? `<span class="price__was">${p.oldPrice} ${business.currency}</span>` : "";
   return `<span class="price"><span class="price__now">${p.price} ${business.currency}</span>${was}</span>`;
 }
 
 function productCard(p) {
-  const badge = p.badge ? `<span class="card__badge">${p.badge}</span>` : "";
+  const badge = p.badge ? `<span class="card__badge">${UI[lang].featured.eyebrow}</span>` : "";
   return `
     <article class="card" data-cat="${p.category}">
       <div class="card__img">
-        <span class="card__tag">${p.category}</span>${badge}
+        <span class="card__tag">${t(CATEGORIES[p.category], lang)}</span>${badge}
         ${placeholder(catIcon[p.category] || icon.jar)}
       </div>
       <div class="card__body">
-        <h3 class="card__name">${p.name}</h3>
-        <p class="card__desc">${p.desc}</p>
+        <h3 class="card__name">${t(p.name, lang)}</h3>
+        <p class="card__desc">${t(p.desc, lang)}</p>
         <div class="card__foot">${priceHTML(p)}</div>
-        <a class="btn btn--wa" href="${waLink(orderText(p))}" target="_blank" rel="noopener">اطلب عبر واتساب</a>
+        <a class="btn btn--wa" href="${waLink(orderText(p, lang))}" target="_blank" rel="noopener">${UI[lang].products.order}</a>
       </div>
     </article>`;
 }
 
-function loadCardImage(card, p) {
-  const box = card.querySelector(".card__img");
-  const ph = box.querySelector(".ph");
-  const img = new Image();
-  img.onload = () => { img.alt = p.name; img.loading = "lazy"; ph.replaceWith(img); };
-  img.src = p.img; // إذا ما في صورة بيضل الـ placeholder
-}
+function renderProducts() {
+  const grid = $("productsGrid");
+  grid.innerHTML = products.map(productCard).join("");
+  grid.querySelectorAll(".card").forEach((card, i) => {
+    const p = products[i];
+    const box = card.querySelector(".card__img");
+    const ph = box.querySelector(".ph");
+    const img = new Image();
+    img.onload = () => { img.alt = t(p.name, lang); img.loading = "lazy"; ph.replaceWith(img); };
+    img.src = p.img;
+  });
 
-function buildFilters() {
-  const cats = ["الكل", ...new Set(products.map((p) => p.category))];
-  const wrap = document.getElementById("filters");
-  wrap.innerHTML = cats
-    .map((c, i) => `<button class="filter${i === 0 ? " active" : ""}" data-f="${c}">${c}</button>`)
-    .join("");
-  wrap.addEventListener("click", (e) => {
+  const cats = [...new Set(products.map((p) => p.category))];
+  const wrap = $("filters");
+  wrap.innerHTML =
+    `<button class="filter active" data-f="all">${UI[lang].products.all}</button>` +
+    cats.map((c) => `<button class="filter" data-f="${c}">${t(CATEGORIES[c], lang)}</button>`).join("");
+  wrap.onclick = (e) => {
     const b = e.target.closest(".filter");
     if (!b) return;
     wrap.querySelectorAll(".filter").forEach((x) => x.classList.remove("active"));
     b.classList.add("active");
     const f = b.dataset.f;
-    document.querySelectorAll(".card").forEach((card) => {
-      card.style.display = f === "الكل" || card.dataset.cat === f ? "" : "none";
+    grid.querySelectorAll(".card").forEach((card) => {
+      card.style.display = f === "all" || card.dataset.cat === f ? "" : "none";
     });
-  });
+  };
 }
 
-/* ---------- STEPS ---------- */
-const steps = [
-  { t: "اختر منتجك", d: "تصفّح المتجر واختر اللي بدك ياه." },
-  { t: "اطلب عبر واتساب", d: "اضغط زر الطلب وأكّد العنوان والكمية." },
-  { t: "استلم وادفع", d: "توصلك الطلبية لباب البيت وتدفع عند الاستلام." },
-];
-
-/* ---------- REVIEWS (نماذج مؤقتة) ---------- */
-const reviews = [
-  { n: "أبو محمد", w: "تركيا", s: 5, t: "العسل طبيعي وطعمته أصلية، والتوصيل وصلني بسرعة. تعامل محترم." },
-  { n: "ريم", w: "سوريا", s: 5, t: "زيت الزيتون من أحسن اللي جربته، رائحته وطعمته بلدية ١٠٠٪." },
-  { n: "خالد", w: "حماة", s: 5, t: "الدفع عند الاستلام أراحني، والمنتجات وصلت مغلّفة منيح." },
-];
-function reviewCard(r) {
-  return `
-    <div class="review">
-      <div class="review__stars">${"★".repeat(r.s)}</div>
-      <p class="review__text">"${r.t}"</p>
-      <div class="review__who"><span class="review__avatar">${r.n.charAt(0)}</span>${r.n} — ${r.w}</div>
-    </div>`;
+function renderList(id, items, tag = "li") {
+  $(id).innerHTML = items.map((s) => `<${tag}><h3>${s[0]}</h3><p>${s[1]}</p></${tag}>`).join("");
 }
 
-/* ---------- آلية العمل (للتاجر) ---------- */
-const processSteps = [
-  { t: "ترسل لنا التفاصيل", d: "شعارك، منتجاتك، أسعارك، وصورك (أو نجهّزها لك)." },
-  { t: "نصمّم موقعك", d: "باسمك وألوانك، متجاوب مع الموبايل." },
-  { t: "نضيف المميزات", d: "بوت ذكي، أزرار طلب واتساب، وأي شي بدك ياه." },
-  { t: "نرفعه أونلاين", d: "يصير جاهز برابط خاص فيك — وتبدأ تستقبل طلبات." },
-];
-
-/* ---------- الخدمات والأسعار ---------- */
-function priceTag(s) {
-  if (s.price === 0) return `<span class="svc-price svc-price--free">مشمول مجاناً</span>`;
-  return `<span class="svc-price">${serviceCurrency}${s.price}<small>${s.unit || ""}</small></span>`;
+function renderReviews() {
+  $("reviewsGrid").innerHTML = UI[lang].reviews.items
+    .map((r) => `
+      <div class="review">
+        <div class="review__stars">★★★★★</div>
+        <p class="review__text">"${r[0]}"</p>
+        <div class="review__who"><span class="review__avatar">${r[1].charAt(0)}</span>${r[1]}</div>
+      </div>`)
+    .join("");
 }
+
 function serviceCard(s) {
+  const price = s.price === 0
+    ? `<span class="svc-price svc-price--free">${UI[lang].services.free}</span>`
+    : `<span class="svc-price">${serviceCurrency}${s.price}<small>${s.unit ? t(s.unit, lang) : ""}</small></span>`;
   return `
     <article class="svc-card${s.featured ? " svc-card--featured" : ""}">
-      ${s.featured ? '<span class="svc-badge">الأكثر طلباً</span>' : ""}
-      <h3 class="svc-name">${s.name}</h3>
-      <p class="svc-desc">${s.desc}</p>
-      ${priceTag(s)}
+      ${s.featured ? `<span class="svc-badge">${UI[lang].services.featured}</span>` : ""}
+      <h3 class="svc-name">${t(s.name, lang)}</h3>
+      <p class="svc-desc">${t(s.desc, lang)}</p>
+      ${price}
     </article>`;
 }
 
-/* ---------- INIT ---------- */
-function init() {
-  document.getElementById("processSteps").innerHTML = processSteps
-    .map((s) => `<li><h3>${s.t}</h3><p>${s.d}</p></li>`)
-    .join("");
-  document.getElementById("servicesGrid").innerHTML = services.map(serviceCard).join("");
-  document.getElementById("whyGrid").innerHTML = whyItems.map(whyCard).join("");
-  const grid = document.getElementById("productsGrid");
-  grid.innerHTML = products.map(productCard).join("");
-  grid.querySelectorAll(".card").forEach((card, i) => loadCardImage(card, products[i]));
-  buildFilters();
-  document.getElementById("steps").innerHTML = steps
-    .map((s) => `<li><h3>${s.t}</h3><p>${s.d}</p></li>`)
-    .join("");
-  document.getElementById("reviewsGrid").innerHTML = reviews.map(reviewCard).join("");
+function renderServices() {
+  $("servicesGrid").innerHTML = services.map(serviceCard).join("");
+}
 
-  document.querySelectorAll(".hero__frame").forEach((el) => loadFrame(el, icon.bottle));
-  document.querySelectorAll(".feature-band__media").forEach((el) => loadFrame(el, icon.jar));
+function renderLinks() {
+  const hello = waLink(UI[lang].chat.hello);
+  ["ctaHeader", "ctaHeroWa", "waFloat"].forEach((id) => { const el = $(id); if (el) el.href = hello; });
+  const offer = products.find((p) => p.id === "royal-honey-set") || products[0];
+  $("ctaOffer").href = waLink(orderText(offer, lang));
+  $("copyright").textContent = `© ${new Date().getFullYear()} ${UI[lang].ph.shopNameShort} — ${UI[lang].footer.rights}`;
+  $("ticker").innerHTML = `<div class="ticker__track">${[...UI[lang].ticker, ...UI[lang].ticker].map((x) => `<span>${x}</span><span>•</span>`).join("")}</div>`;
+}
 
-  const hello = waLink("مرحبا، حابب استفسر عن منتجاتكم 🙂");
-  ["ctaHeader", "ctaHeroWa", "waFloat", "waFooter"].forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) el.href = hello;
-  });
-  const offer = products.find((p) => p.id === "royal-honey-set");
-  document.getElementById("ctaOffer").href = waLink(orderText(offer));
-
-  document.querySelector(".copyright").textContent =
-    `© ${new Date().getFullYear()} اسم متجرك — جميع الحقوق محفوظة`;
-
-  // header scroll state
-  const header = document.getElementById("header");
-  const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 10);
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
-
-  // mobile nav toggle
-  const navToggle = document.getElementById("navToggle");
-  const nav = document.getElementById("primaryNav");
-  if (navToggle && nav) {
-    const setNav = (open) => {
-      nav.classList.toggle("open", open);
-      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    };
-    navToggle.addEventListener("click", () => setNav(!nav.classList.contains("open")));
-    nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setNav(false)));
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
-  }
-
+/* ---------- language ---------- */
+function applyLang(newLang) {
+  lang = newLang;
+  setLang(lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = UI[lang].dir;
+  renderStatic();
+  renderHeroStats();
+  renderWhy();
+  renderProducts();
+  renderReviews();
+  renderServices();
+  renderList("steps", UI[lang].how.steps);
+  renderList("processSteps", UI[lang].process.steps);
+  renderLinks();
+  document.querySelectorAll(".lang-btn").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
+  window.dispatchEvent(new CustomEvent("langchange", { detail: { lang } }));
   initReveal();
 }
 
-// ظهور تدريجي للعناصر مع السكرول (مع stagger للمجموعات)
+function buildSwitcher() {
+  const wrap = $("langSwitch");
+  if (!wrap) return;
+  wrap.innerHTML = LANGS.map((l) => `<button class="lang-btn" data-lang="${l}">${l.toUpperCase()}</button>`).join("");
+  wrap.onclick = (e) => { const b = e.target.closest(".lang-btn"); if (b) applyLang(b.dataset.lang); };
+}
+
+/* ---------- scroll reveal ---------- */
+let io;
 function initReveal() {
   const groups = [
-    ["#why .why__card", 90],
-    [".section-head", 0],
-    ["#productsGrid .card", 70],
-    [".feature-band__media", 0],
-    [".feature-band__copy", 120],
-    ["#steps li", 110],
-    ["#reviewsGrid .review", 90],
-    ["#processSteps li", 110],
-    ["#servicesGrid .svc-card", 80],
+    ["#whyGrid .why__card", 90], [".section-head", 0], ["#productsGrid .card", 70],
+    [".feature-band__media", 0], [".feature-band__copy", 120], ["#steps li", 110],
+    ["#reviewsGrid .review", 90], ["#processSteps li", 110], ["#servicesGrid .svc-card", 80],
   ];
   const items = [];
   groups.forEach(([sel, step]) => {
@@ -213,20 +185,34 @@ function initReveal() {
       items.push(el);
     });
   });
-
-  if (!("IntersectionObserver" in window)) {
-    items.forEach((el) => el.classList.add("in"));
-    return;
-  }
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
-  );
+  if (!("IntersectionObserver" in window)) { items.forEach((el) => el.classList.add("in")); return; }
+  if (io) io.disconnect();
+  io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
   items.forEach((el) => io.observe(el));
+}
+
+/* ---------- init ---------- */
+function init() {
+  buildSwitcher();
+  applyLang(lang);
+
+  document.querySelectorAll(".hero__frame").forEach((el) => loadFrame(el, icon.bottle));
+  document.querySelectorAll(".feature-band__media").forEach((el) => loadFrame(el, icon.jar));
+
+  const navToggle = $("navToggle"), nav = $("primaryNav");
+  if (navToggle && nav) {
+    const setNav = (open) => { nav.classList.toggle("open", open); navToggle.setAttribute("aria-expanded", open ? "true" : "false"); };
+    navToggle.addEventListener("click", () => setNav(!nav.classList.contains("open")));
+    nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setNav(false)));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
+  }
+
+  const header = $("header");
+  const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 10);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
 }
 
 init();

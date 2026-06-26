@@ -3,23 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>متجر الطبيعة — زيت زيتون وأعسال طبيعية | توصيل سوريا وتركيا</title>
-  <meta name="description" content="متجر الطبيعة: زيت زيتون بكر وأعسال طبيعية ومنتجات بيتوتية مختارة بعناية. توصيل لباب البيت في سوريا وتركيا، دفع عند الاستلام." />
+  <title>متجرك — موقع متجر إلكتروني | Online Store Demo</title>
+  <meta name="description" content="نموذج موقع متجر إلكتروني احترافي بثلاث لغات مع مساعد ذكي — A multilingual online store demo with a smart assistant." />
   <link rel="canonical" href="https://kr-mel.github.io/alikhwa-food/" />
-  <meta property="og:url" content="https://kr-mel.github.io/alikhwa-food/" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="متجر الطبيعة — طبيعة في كل قطرة" />
-  <meta property="og:description" content="زيت زيتون بكر وأعسال طبيعية ومنتجات بيتوتية. توصيل سوريا وتركيا، دفع عند الاستلام." />
+  <meta property="og:title" content="نموذج موقع متجر إلكتروني" />
+  <meta property="og:description" content="موقع متجر احترافي بثلاث لغات مع مساعد ذكي وأزرار طلب واتساب." />
   <meta property="og:image" content="https://kr-mel.github.io/alikhwa-food/assets/og.jpg" />
-  <meta property="og:locale" content="ar_AR" />
   <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%232c3315'/%3E%3Cpath d='M16 7c4 2 6 5 6 9a6 6 0 0 1-12 0c0-4 2-7 6-9z' fill='%23e0a43c'/%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%232c3315'/%3E%3Cpath d='M16 7c4 2 6 5 6 9a6 6 0 0 1-12 0c0-4 2-7 6-9z' fill='%23e0a43c'/%3E%3C/svg%3E" />
 
   <link rel="stylesheet" href="styles.css" />
 
@@ -27,10 +25,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Store",
-    "name": "متجر الطبيعة",
-    "description": "زيت زيتون بكر وأعسال طبيعية ومنتجات بيتوتية. توصيل ضمن سوريا وتركيا.",
-    "image": "https://kr-mel.github.io/alikhwa-food/assets/og.jpg",
-    "url": "https://kr-mel.github.io/alikhwa-food/",
+    "name": "Online Store",
     "areaServed": ["SY", "TR"],
     "currenciesAccepted": "TRY",
     "paymentAccepted": "Cash on delivery"
@@ -38,181 +33,165 @@
   </script>
 </head>
 <body>
-  <!-- ===================== ANNOUNCEMENT BAR ===================== -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker__track">
-      <span>🚚 توصيل مجاني لباب البيت</span><span>•</span>
-      <span>💵 الدفع عند الاستلام</span><span>•</span>
-      <span>🎁 المجموعة الملكية بعرض خاص — ٢١٥٠ ₺</span><span>•</span>
-      <span>🌿 منتجات طبيعية ١٠٠٪</span><span>•</span>
-      <span>🌿 توصيل سوريا وتركيا</span><span>•</span>
-      <span>🚚 توصيل مجاني لباب البيت</span><span>•</span>
-      <span>💵 الدفع عند الاستلام</span><span>•</span>
-      <span>🎁 المجموعة الملكية بعرض خاص — ٢١٥٠ ₺</span><span>•</span>
-      <span>🌿 منتجات طبيعية ١٠٠٪</span><span>•</span>
-      <span>🌿 توصيل سوريا وتركيا</span><span>•</span>
-    </div>
-  </div>
+  <!-- ticker (filled by JS per language) -->
+  <div class="ticker" id="ticker" aria-hidden="true"></div>
 
-  <!-- ===================== HEADER ===================== -->
+  <!-- HEADER -->
   <header class="header" id="header">
     <div class="container header__inner">
-      <a class="logo" href="#top" aria-label="متجر الطبيعة">
+      <a class="logo" href="#top" aria-label="logo">
         <svg viewBox="0 0 24 24" class="logo__icon" aria-hidden="true"><path d="M12 21s1.5-7 8-9c0 6-5 9-8 9zM12 21s-1.5-7-8-9c0 6 5 9 8 9zM12 21V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="5.5" r="2.4" fill="currentColor"/></svg>
-        <span class="logo__text">شعارك هنا</span>
+        <span class="logo__text" data-i18n="ph.logo"></span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="القائمة" aria-expanded="false" aria-controls="primaryNav">
+      <nav class="nav" id="primaryNav" aria-label="nav">
+        <a href="#products" data-i18n="nav.store"></a>
+        <a href="#why" data-i18n="nav.why"></a>
+        <a href="#how" data-i18n="nav.how"></a>
+        <a href="#services" data-i18n="nav.services"></a>
+      </nav>
+      <div class="lang-switch" id="langSwitch" role="group" aria-label="language"></div>
+      <a class="btn btn--sm btn--gold" id="ctaHeader" data-i18n="orderNow" href="#" target="_blank" rel="noopener"></a>
+      <button class="nav-toggle" id="navToggle" aria-label="menu" aria-expanded="false" aria-controls="primaryNav">
         <span></span><span></span><span></span>
       </button>
-      <nav class="nav" id="primaryNav" aria-label="التنقل">
-        <a href="#products">المتجر</a>
-        <a href="#why">لماذا نحن</a>
-        <a href="#how">كيف تطلب</a>
-        <a href="#services">الخدمات والأسعار</a>
-      </nav>
-      <a class="btn btn--sm btn--gold" id="ctaHeader" href="#" target="_blank" rel="noopener">اطلب الآن</a>
     </div>
   </header>
 
-  <!-- ===================== HERO ===================== -->
+  <!-- HERO -->
   <section class="hero" id="top">
     <div class="container hero__grid">
       <div class="hero__copy">
-        <span class="eyebrow">طبيعية ١٠٠٪ — مختارة بعناية</span>
-        <h1>من الأرض إلى<br /><span class="accent">باب بيتك</span></h1>
-        <p class="lead">زيت زيتون بكر، أعسال جبلية، ومنتجات بيتوتية أصيلة. ننتقيها بأنفسنا ونوصّلها لك في سوريا وتركيا.</p>
+        <span class="eyebrow" data-i18n="hero.eyebrow"></span>
+        <h1><span data-i18n="hero.titleA"></span><br /><span class="accent" data-i18n="hero.titleB"></span></h1>
+        <p class="lead" data-i18n="hero.lead"></p>
         <div class="hero__cta">
-          <a class="btn btn--gold" href="#products">تصفّح المنتجات</a>
-          <a class="btn btn--ghost" id="ctaHeroWa" href="#" target="_blank" rel="noopener">تواصل واتساب</a>
+          <a class="btn btn--gold" href="#products" data-i18n="hero.browse"></a>
+          <a class="btn btn--ghost" id="ctaHeroWa" href="#" target="_blank" rel="noopener" data-i18n="hero.contact"></a>
         </div>
-        <ul class="hero__stats">
-          <li><strong>١٠٠٪</strong><span>طبيعي</span></li>
-          <li><strong>توصيل</strong><span>سوريا وتركيا</span></li>
-          <li><strong>دفع</strong><span>عند الاستلام</span></li>
-        </ul>
+        <ul class="hero__stats" id="heroStats"></ul>
       </div>
       <div class="hero__media">
-        <div class="hero__frame" data-img="assets/hero.webp" data-alt="صورة المتجر"></div>
+        <div class="hero__frame" data-img="assets/hero.webp" data-alt="store"></div>
         <div class="hero__badge">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 6.9H22l-6 4.3 2.3 6.9L12 16l-6.3 4 2.3-6.9-6-4.3h7.6z" fill="currentColor"/></svg>
-          <span>دفع عند الاستلام</span>
+          <span data-i18n="hero.badge"></span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== WHY ===================== -->
+  <!-- WHY -->
   <section class="why" id="why">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">لماذا نحن</span>
-        <h2>وعدنا في كل منتج</h2>
+        <span class="eyebrow" data-i18n="why.eyebrow"></span>
+        <h2 data-i18n="why.title"></h2>
       </div>
       <div class="why__grid" id="whyGrid"></div>
     </div>
   </section>
 
-  <!-- ===================== PRODUCTS ===================== -->
+  <!-- PRODUCTS -->
   <section class="products" id="products">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">متجرنا</span>
-        <h2>منتجاتنا المختارة</h2>
+        <span class="eyebrow" data-i18n="products.eyebrow"></span>
+        <h2 data-i18n="products.title"></h2>
       </div>
       <div class="filters" id="filters"></div>
       <div class="products__grid" id="productsGrid"></div>
     </div>
   </section>
 
-  <!-- ===================== FEATURED OFFER ===================== -->
+  <!-- FEATURED -->
   <section class="feature-band">
     <div class="container feature-band__inner">
-      <div class="feature-band__media" data-img="assets/products/royal-set.webp" data-alt="المجموعة الملكية من العسل"></div>
+      <div class="feature-band__media" data-img="assets/products/royal-set.webp" data-alt="offer"></div>
       <div class="feature-band__copy">
-        <span class="eyebrow eyebrow--light">عرض المجموعة الملكية</span>
-        <h2>أربعة أعسال + سمنة غنم هدية</h2>
-        <p>حبة البركة، سدر بقّي، جبلي مع مكسرات، ومزيج الأزهار — ٥٠٠غ لكل نوع، مع سمنة غنم بلدية هدية مع كل طلب.</p>
+        <span class="eyebrow eyebrow--light" data-i18n="featured.eyebrow"></span>
+        <h2 data-i18n="featured.title"></h2>
+        <p data-i18n="featured.desc"></p>
         <div class="feature-band__price"><span class="now">٢١٥٠ ₺</span><span class="was">٣١٥٠ ₺</span></div>
-        <a class="btn btn--gold" id="ctaOffer" href="#" target="_blank" rel="noopener">اطلب المجموعة</a>
+        <a class="btn btn--gold" id="ctaOffer" href="#" target="_blank" rel="noopener" data-i18n="featured.cta"></a>
       </div>
     </div>
   </section>
 
-  <!-- ===================== HOW TO ORDER ===================== -->
+  <!-- HOW -->
   <section class="how" id="how">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">سهلة وسريعة</span>
-        <h2>كيف تطلب؟</h2>
+        <span class="eyebrow" data-i18n="how.eyebrow"></span>
+        <h2 data-i18n="how.title"></h2>
       </div>
       <ol class="steps" id="steps"></ol>
     </div>
   </section>
 
-  <!-- ===================== REVIEWS ===================== -->
+  <!-- REVIEWS -->
   <section class="reviews" id="reviews">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">ثقة زبائننا</span>
-        <h2>شو بيقولوا عنا</h2>
+        <span class="eyebrow" data-i18n="reviews.eyebrow"></span>
+        <h2 data-i18n="reviews.title"></h2>
       </div>
       <div class="reviews__grid" id="reviewsGrid"></div>
     </div>
   </section>
 
-  <!-- ===================== آلية العمل (للتاجر) ===================== -->
+  <!-- PROCESS (للتاجر) -->
   <section class="process" id="process">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">آلية العمل</span>
-        <h2>كيف نجهّز موقعك؟</h2>
-        <p class="section-head__note">من فكرة إلى موقع جاهز باسمك خلال أيام.</p>
+        <span class="eyebrow" data-i18n="process.eyebrow"></span>
+        <h2 data-i18n="process.title"></h2>
+        <p class="section-head__note" data-i18n="process.note"></p>
       </div>
       <ol class="steps" id="processSteps"></ol>
     </div>
   </section>
 
-  <!-- ===================== الخدمات والأسعار ===================== -->
+  <!-- SERVICES & PRICING -->
   <section class="services-sec" id="services">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow eyebrow--light">الخدمات والأسعار</span>
-        <h2>شو بنقدّملك؟</h2>
-        <p class="section-head__note">اختر اللي بناسبك — كل خدمة بسعرها.</p>
+        <span class="eyebrow eyebrow--light" data-i18n="services.eyebrow"></span>
+        <h2 data-i18n="services.title"></h2>
+        <p class="section-head__note" data-i18n="services.note"></p>
       </div>
       <div class="svc-grid" id="servicesGrid"></div>
-      <p class="svc-note">* الأسعار تقريبية وقابلة للتعديل حسب حجم متجرك وطلبك.</p>
+      <p class="svc-note" data-i18n="services.disclaimer"></p>
     </div>
   </section>
 
-  <!-- ===================== FOOTER ===================== -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
         <a class="logo logo--light" href="#top">
           <svg viewBox="0 0 24 24" class="logo__icon" aria-hidden="true"><path d="M12 21s1.5-7 8-9c0 6-5 9-8 9zM12 21s-1.5-7-8-9c0 6 5 9 8 9zM12 21V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="5.5" r="2.4" fill="currentColor"/></svg>
-          <span class="logo__text">اسم متجرك هنا</span>
+          <span class="logo__text" data-i18n="ph.shopName"></span>
         </a>
-        <p>نبذة قصيرة عن متجرك تكتب هنا.</p>
+        <p data-i18n="footer.about"></p>
       </div>
       <div class="footer__col">
-        <h4>روابط</h4>
-        <a href="#products">المتجر</a>
-        <a href="#why">لماذا نحن</a>
-        <a href="#how">كيف تطلب</a>
+        <h4 data-i18n="footer.links"></h4>
+        <a href="#products" data-i18n="nav.store"></a>
+        <a href="#why" data-i18n="nav.why"></a>
+        <a href="#how" data-i18n="nav.how"></a>
       </div>
       <div class="footer__col">
-        <h4>تواصل</h4>
-        <span>📞 رقم تواصلك هنا</span>
-        <span>📷 حساباتك هنا</span>
+        <h4 data-i18n="footer.contact"></h4>
+        <span data-i18n="footer.phone"></span>
+        <span data-i18n="footer.socials"></span>
       </div>
     </div>
     <div class="container footer__bottom">
-      <span class="copyright"></span>
+      <span class="copyright" id="copyright"></span>
     </div>
   </footer>
 
-  <a id="waFloat" class="wa-float" href="#" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">
+  <a id="waFloat" class="wa-float" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
     <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.5 8.5 3.5 15.5c0 2.3.6 4.5 1.8 6.4L3 29l7.4-2.2c1.8 1 3.9 1.5 5.9 1.5 7 0 12.6-5.5 12.6-12.5S23 3 16 3zm0 22.7c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-4.4 1.3 1.2-4.3-.3-.4c-1-1.6-1.6-3.5-1.6-5.5C5.6 9.7 10.2 5.2 16 5.2s10.4 4.5 10.4 10.3S21.8 25.7 16 25.7zm5.8-7.7c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-1.9-.9-3.1-1.7-4.4-3.8-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.6s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-1.3 1.3-1.3 3.1-.1 4.9 1.2 1.8 2.9 3.9 5.9 5.1 2.9 1.2 2.9.8 3.4.8.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>
   </a>
 

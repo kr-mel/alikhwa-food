@@ -139,6 +139,16 @@ img { max-width: 100%; display: block; }
 .nav a:hover { color: var(--olive-900); }
 .nav a:hover::after { transform: scaleX(1); }
 
+/* ---------- language switcher ---------- */
+.lang-switch { display: flex; gap: 4px; align-items: center; }
+.lang-btn {
+  font-family: inherit; font-weight: 700; font-size: 0.72rem; letter-spacing: .02em;
+  padding: 5px 9px; border-radius: 8px; border: 1px solid var(--line);
+  background: transparent; color: var(--ink-soft); cursor: pointer; transition: all .2s;
+}
+.lang-btn:hover { border-color: var(--amber-500); color: var(--olive-900); }
+.lang-btn.active { background: var(--olive-700); border-color: var(--olive-700); color: #fff; }
+
 /* ---------- hero ---------- */
 .hero {
   position: relative; padding: clamp(40px, 7vw, 88px) 0 clamp(56px, 8vw, 104px);
