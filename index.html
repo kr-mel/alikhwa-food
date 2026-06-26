@@ -38,6 +38,12 @@
   </script>
 </head>
 <body>
+  <!-- ===================== DEMO / PITCH BANNER ===================== -->
+  <div class="demo-banner">
+    <p>👋 <strong>هذا نموذج لموقعك.</strong> تخيّل <b>شعارك</b> و<b>منتجاتك</b> و<b>صورك</b> الحقيقية مكان ما تراه هنا.</p>
+    <a href="#services" class="btn btn--sm btn--gold">شوف الخدمات والأسعار ↓</a>
+  </div>
+
   <!-- ===================== ANNOUNCEMENT BAR ===================== -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker__track">
@@ -61,6 +67,7 @@
         <svg viewBox="0 0 24 24" class="logo__icon" aria-hidden="true"><path d="M12 21s1.5-7 8-9c0 6-5 9-8 9zM12 21s-1.5-7-8-9c0 6 5 9 8 9zM12 21V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="5.5" r="2.4" fill="currentColor"/></svg>
         <span class="logo__text">متجر الطبيعة</span>
       </a>
+      <span class="anno anno--logo">🏷️ شعارك هنا</span>
       <button class="nav-toggle" id="navToggle" aria-label="القائمة" aria-expanded="false" aria-controls="primaryNav">
         <span></span><span></span><span></span>
       </button>
@@ -68,7 +75,7 @@
         <a href="#products">المتجر</a>
         <a href="#why">لماذا نحن</a>
         <a href="#how">كيف تطلب</a>
-        <a href="#reviews">آراء الزبائن</a>
+        <a href="#services">الخدمات والأسعار</a>
       </nav>
       <a class="btn btn--sm btn--gold" id="ctaHeader" href="#" target="_blank" rel="noopener">اطلب الآن</a>
     </div>
@@ -93,6 +100,7 @@
       </div>
       <div class="hero__media">
         <div class="hero__frame" data-img="assets/hero.webp" data-alt="منتجات متجر الطبيعة"></div>
+        <span class="anno anno--corner">📸 صورك الاحترافية هنا</span>
         <div class="hero__badge">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 6.9H22l-6 4.3 2.3 6.9L12 16l-6.3 4 2.3-6.9-6-4.3h7.6z" fill="currentColor"/></svg>
           <span>دفع عند الاستلام</span>
@@ -118,6 +126,7 @@
       <div class="section-head">
         <span class="eyebrow">متجرنا</span>
         <h2>منتجاتنا المختارة</h2>
+        <p class="anno anno--center">🛒 هنا ستظهر منتجاتك وأسعارك الحقيقية</p>
       </div>
       <div class="filters" id="filters"></div>
       <div class="products__grid" id="productsGrid"></div>
@@ -157,6 +166,31 @@
         <h2>شو بيقولوا عنا</h2>
       </div>
       <div class="reviews__grid" id="reviewsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===================== آلية العمل (للتاجر) ===================== -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">آلية العمل</span>
+        <h2>كيف نجهّز موقعك؟</h2>
+        <p class="section-head__note">من فكرة إلى موقع جاهز باسمك خلال أيام.</p>
+      </div>
+      <ol class="steps" id="processSteps"></ol>
+    </div>
+  </section>
+
+  <!-- ===================== الخدمات والأسعار ===================== -->
+  <section class="services-sec" id="services">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow eyebrow--light">الخدمات والأسعار</span>
+        <h2>شو بنقدّملك؟</h2>
+        <p class="section-head__note">اختر اللي بناسبك — كل خدمة بسعرها.</p>
+      </div>
+      <div class="svc-grid" id="servicesGrid"></div>
+      <p class="svc-note">* الأسعار تقريبية وقابلة للتعديل حسب حجم متجرك وطلبك.</p>
     </div>
   </section>
 

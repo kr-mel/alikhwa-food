@@ -64,6 +64,28 @@ img { max-width: 100%; display: block; }
 .btn--wa { background: #1faa52; color: #fff; width: 100%; }
 .btn--wa:hover { background: #18934a; transform: translateY(-2px); }
 
+/* ---------- demo / pitch banner ---------- */
+.demo-banner {
+  background: linear-gradient(90deg, var(--amber-500), var(--amber-600));
+  color: var(--olive-900); display: flex; flex-wrap: wrap; gap: 12px 18px;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 10px 16px; font-size: 0.95rem;
+}
+.demo-banner p { margin: 0; }
+.demo-banner b { color: var(--olive-900); }
+.demo-banner .btn { white-space: nowrap; }
+
+/* ---------- annotations (addressed to the merchant) ---------- */
+.anno {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; font-weight: 700; color: var(--olive-900);
+  background: rgba(255, 253, 248, 0.92); border: 1.5px dashed var(--amber-600);
+  padding: 5px 12px; border-radius: 999px; white-space: nowrap;
+}
+.anno--logo { margin-inline-end: auto; }
+.anno--corner { position: absolute; top: 14px; inset-inline-end: 14px; z-index: 4; box-shadow: var(--shadow-sm); }
+.anno--center { display: inline-flex; margin: 12px auto 0; }
+
 /* ---------- announcement ticker ---------- */
 .ticker {
   background: var(--olive-900); color: var(--honey-light, #f3e4c4);
@@ -260,6 +282,39 @@ img { max-width: 100%; display: block; }
 .review__avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--amber-100); color: var(--olive-700);
   display: grid; place-items: center; font-family: "El Messiri", serif; font-weight: 700; }
 
+/* ---------- process (للتاجر) ---------- */
+.process { padding: clamp(56px, 8vw, 96px) 0; }
+
+/* ---------- services & pricing ---------- */
+.services-sec {
+  padding: clamp(56px, 8vw, 96px) 0;
+  background: linear-gradient(135deg, var(--olive-900), var(--olive-700));
+  color: var(--bone); position: relative; overflow: hidden;
+}
+.services-sec::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 70% at 15% 20%, rgba(224,164,60,0.16), transparent 60%); }
+.services-sec .section-head { position: relative; }
+.services-sec .section-head h2 { color: #fff; }
+.services-sec .section-head__note { color: rgba(247,243,234,0.8); }
+.svc-grid { position: relative; display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.svc-card {
+  background: rgba(255,253,248,0.97); border-radius: var(--radius); padding: 26px 24px;
+  display: flex; flex-direction: column; gap: 10px; position: relative;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.svc-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.svc-card--featured { outline: 3px solid var(--amber-500); }
+.svc-badge {
+  position: absolute; top: -12px; inset-inline-start: 24px;
+  background: var(--amber-500); color: var(--olive-900); font-size: 0.75rem; font-weight: 700;
+  padding: 4px 14px; border-radius: 999px;
+}
+.svc-name { font-size: 1.2rem; color: var(--olive-900); }
+.svc-desc { color: var(--ink-soft); font-size: 0.9rem; flex: 1; }
+.svc-price { font-family: "El Messiri", serif; font-size: 1.7rem; font-weight: 700; color: var(--olive-700); margin-top: 6px; }
+.svc-price small { font-family: "Tajawal", sans-serif; font-size: 0.85rem; font-weight: 500; color: var(--ink-soft); }
+.svc-price--free { color: #1faa52; font-size: 1.2rem; }
+.svc-note { position: relative; text-align: center; margin-top: 26px; font-size: 0.85rem; color: rgba(247,243,234,0.75); }
+
 /* ---------- footer ---------- */
 .footer { background: var(--olive-900); color: rgba(247,243,234,0.8); padding: 60px 0 26px; }
 .footer__inner { display: grid; grid-template-columns: 2fr 1fr 1.4fr; gap: 36px; }
@@ -292,6 +347,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 600px) {
   .nav-toggle { display: flex; }
   #ctaHeader { display: none; }
+  .anno--logo { display: none; }
   .nav {
     display: none; position: absolute; top: 100%; inset-inline: 0;
     flex-direction: column; gap: 4px; background: var(--paper);

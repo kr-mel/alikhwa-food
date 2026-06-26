@@ -1,4 +1,4 @@
-import { business, products, waLink, orderText } from "./src/data.js";
+import { business, products, services, serviceCurrency, waLink, orderText } from "./src/data.js";
 
 /* ---------- SVG icons (stroke) ---------- */
 const icon = {
@@ -117,8 +117,35 @@ function reviewCard(r) {
     </div>`;
 }
 
+/* ---------- آلية العمل (للتاجر) ---------- */
+const processSteps = [
+  { t: "ترسل لنا التفاصيل", d: "شعارك، منتجاتك، أسعارك، وصورك (أو نجهّزها لك)." },
+  { t: "نصمّم موقعك", d: "باسمك وألوانك، متجاوب مع الموبايل." },
+  { t: "نضيف المميزات", d: "بوت ذكي، أزرار طلب واتساب، وأي شي بدك ياه." },
+  { t: "نرفعه أونلاين", d: "يصير جاهز برابط خاص فيك — وتبدأ تستقبل طلبات." },
+];
+
+/* ---------- الخدمات والأسعار ---------- */
+function priceTag(s) {
+  if (s.price === 0) return `<span class="svc-price svc-price--free">مشمول مجاناً</span>`;
+  return `<span class="svc-price">${serviceCurrency}${s.price}<small>${s.unit || ""}</small></span>`;
+}
+function serviceCard(s) {
+  return `
+    <article class="svc-card${s.featured ? " svc-card--featured" : ""}">
+      ${s.featured ? '<span class="svc-badge">الأكثر طلباً</span>' : ""}
+      <h3 class="svc-name">${s.name}</h3>
+      <p class="svc-desc">${s.desc}</p>
+      ${priceTag(s)}
+    </article>`;
+}
+
 /* ---------- INIT ---------- */
 function init() {
+  document.getElementById("processSteps").innerHTML = processSteps
+    .map((s) => `<li><h3>${s.t}</h3><p>${s.d}</p></li>`)
+    .join("");
+  document.getElementById("servicesGrid").innerHTML = services.map(serviceCard).join("");
   document.getElementById("whyGrid").innerHTML = whyItems.map(whyCard).join("");
   const grid = document.getElementById("productsGrid");
   grid.innerHTML = products.map(productCard).join("");
@@ -175,6 +202,8 @@ function initReveal() {
     [".feature-band__copy", 120],
     ["#steps li", 110],
     ["#reviewsGrid .review", 90],
+    ["#processSteps li", 110],
+    ["#servicesGrid .svc-card", 80],
   ];
   const items = [];
   groups.forEach(([sel, step]) => {
