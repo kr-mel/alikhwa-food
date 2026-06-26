@@ -5,14 +5,13 @@
 // ============================================================
 
 export const business = {
-  name: "غذائيات الأخوة",
+  name: "متجر الطبيعة",
   tagline: "منتجات غذائية طبيعية نختارها بعناية",
   about:
-    "زيت زيتون وأعسال فاخرة ومنتجات بيتوتية — منتقاة بعناية. توصيل لباب البيت ضمن سوريا وتركيا، والدفع عند الاستلام.",
+    "زيت زيتون وأعسال فاخرة ومنتجات طبيعية — منتقاة بعناية. توصيل لباب البيت مع الدفع عند الاستلام.",
   currency: "₺",
-  whatsapp: "905068267285", // +90 506 826 7285
-  instagram: "https://www.instagram.com/alikhwa.food/",
-  // ملاحظات: العملة بالليرة التركية. التوصيل سوريا + تركيا، دفع عند الاستلام، ضمان استرجاع.
+  whatsapp: "905000000000", // ← ضع رقم واتسابك هنا (بدون + وبدون مسافات)
+  instagram: "#", // ← ضع رابط حسابك إن وجد
 };
 
 export const delivery = {
@@ -49,7 +48,7 @@ export const products = [
     id: "olive-oil",
     name: "زيت زيتون بكر — نخب أول",
     desc: "عصرة أولى على البارد. لونه ذهبي مخضرّ وطعمه بلدي صافي.",
-    price: null,
+    price: 450,
     category: "زيت زيتون",
     img: "assets/products/olive-oil.webp",
   },
@@ -57,7 +56,7 @@ export const products = [
     id: "honey-sidr",
     name: "عسل سدر بقّي",
     desc: "سدر أصلي، كثيف وغني. من أفخر أنواع العسل.",
-    price: null,
+    price: 950,
     category: "أعسال",
     img: "assets/products/honey-sidr.webp",
   },
@@ -65,15 +64,15 @@ export const products = [
     id: "honey-nuts",
     name: "عسل جبلي مع مكسرات",
     desc: "عسل جبلي معبّأ مع لوز وجوز وفستق — لقمة كاملة بالطاقة.",
-    price: null,
+    price: 700,
     category: "أعسال",
     img: "assets/products/honey-nuts.webp",
   },
   {
     id: "honey-flowers",
     name: "عسل مزيج الأزهار",
-    desc: "من رحيق أزهار الموسم، طعمه متوازن وخفيف.",
-    price: null,
+    desc: "من رحيق أزهار الموسم, طعمه متوازن وخفيف.",
+    price: 500,
     category: "أعسال",
     img: "assets/products/honey-flowers.webp",
   },
@@ -81,7 +80,7 @@ export const products = [
     id: "honey-citrus",
     name: "عسل الحمضيات",
     desc: "رائحة الليمون والبرتقال واضحة فيه، منعش ولذيذ.",
-    price: null,
+    price: 480,
     category: "أعسال",
     img: "assets/products/honey-citrus.webp",
   },
@@ -89,7 +88,7 @@ export const products = [
     id: "sheep-ghee",
     name: "سمنة غنم بلدية",
     desc: "سمنة غنم أصلية، تعطي الأكل نكهة ما إلها مثيل.",
-    price: null,
+    price: 600,
     category: "منتجات بيتوتية",
     img: "assets/products/sheep-ghee.webp",
   },

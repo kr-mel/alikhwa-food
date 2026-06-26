@@ -1,4 +1,4 @@
-// ودجت شات "مساعد الأخوة" — يتكلم مع الـWorker، أو يرشد لواتساب إذا ما في رابط.
+// ودجت شات "مساعد المتجر" — يتكلم مع الـWorker، أو يرشد لواتساب إذا ما في رابط.
 import { SITE_CONFIG } from "./config.js";
 import { business, waLink } from "./data.js";
 
@@ -51,10 +51,10 @@ function el(html) { const t = document.createElement("template"); t.innerHTML = 
 function init() {
   const style = document.createElement("style"); style.textContent = css; document.head.appendChild(style);
 
-  const btn = el(`<button class="cw-btn" aria-label="مساعد الأخوة">${chatIcon}</button>`);
+  const btn = el(`<button class="cw-btn" aria-label="مساعد المتجر">${chatIcon}</button>`);
   const panel = el(`
-    <div class="cw-panel" role="dialog" aria-label="مساعد الأخوة">
-      <div class="cw-head"><span class="cw-dot"></span><b>مساعد الأخوة</b>
+    <div class="cw-panel" role="dialog" aria-label="مساعد المتجر">
+      <div class="cw-head"><span class="cw-dot"></span><b>مساعد المتجر</b>
         <button class="cw-x" aria-label="إغلاق">×</button></div>
       <div class="cw-body"></div>
       <form class="cw-foot"><input type="text" placeholder="اكتب سؤالك..." autocomplete="off" />
@@ -77,7 +77,7 @@ function init() {
   panel.querySelector(".cw-x").onclick = close;
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && panel.classList.contains("open")) close(); });
 
-  add("هلا وسهلا 👋 أنا مساعد الأخوة. اسألني عن المنتجات، الأسعار، أو التوصيل.", "bot");
+  add("هلا وسهلا 👋 أنا مساعد المتجر. اسألني عن المنتجات، الأسعار، أو التوصيل.", "bot");
 
   panel.querySelector("form").addEventListener("submit", async (e) => {
     e.preventDefault();
