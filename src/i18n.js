@@ -25,7 +25,7 @@ export const UI = {
       ["دفع عند الاستلام", "تدفع بعد ما توصلك الطلبية وتطمئن عليها."],
       ["ضمان الجودة", "إذا ما عجبك المنتج، حقك محفوظ وبيرجع."],
     ]},
-    products: { eyebrow: "متجرنا", title: "منتجاتنا المختارة", all: "الكل", order: "اطلب عبر واتساب", ask: "تواصل للسعر" },
+    products: { eyebrow: "جرّبها بنفسك", title: "املأ متجرك", hint: "أضف صور منتجاتك وأسعارك وتخيّل شكل متجرك مباشرة 👇", uploadHint: "اضغط لإضافة صورة منتجك", namePh: "اسم المنتج", pricePh: "السعر", addProduct: "أضف منتجاً", order: "اطلب عبر واتساب", ask: "تواصل للسعر", heroUpload: "اضغط لإضافة صورة متجرك" },
     featured: { eyebrow: "عرض خاص", title: "مجموعة مختارة بسعر مميّز", desc: "تشكيلة من أفضل منتجاتنا الطبيعية، مع هدية مع كل طلب.", cta: "اطلب الآن" },
     how: { eyebrow: "سهلة وسريعة", title: "كيف تطلب؟", steps: [
       ["اختر منتجك", "تصفّح المتجر واختر اللي بدك ياه."],
@@ -68,7 +68,7 @@ export const UI = {
       ["Kapıda ödeme", "Ürün elinize ulaşınca ödersiniz."],
       ["Kalite garantisi", "Beğenmezseniz iadesi mümkün."],
     ]},
-    products: { eyebrow: "Mağazamız", title: "Seçkin ürünlerimiz", all: "Tümü", order: "WhatsApp ile sipariş", ask: "Fiyat için iletişim" },
+    products: { eyebrow: "Kendiniz deneyin", title: "Mağazanızı doldurun", hint: "Ürün görsellerinizi ve fiyatlarınızı ekleyin, mağazanızı canlı hayal edin 👇", uploadHint: "Ürün görselinizi eklemek için tıklayın", namePh: "Ürün adı", pricePh: "Fiyat", addProduct: "Ürün ekle", order: "WhatsApp ile sipariş", ask: "Fiyat için iletişim", heroUpload: "Mağaza görselinizi eklemek için tıklayın" },
     featured: { eyebrow: "Özel teklif", title: "Özel fiyatlı seçki", desc: "En iyi doğal ürünlerimizden bir seçki, her siparişte hediyeyle.", cta: "Sipariş ver" },
     how: { eyebrow: "Kolay ve hızlı", title: "Nasıl sipariş verilir?", steps: [
       ["Ürününü seç", "Mağazayı gez ve istediğini seç."],
@@ -111,7 +111,7 @@ export const UI = {
       ["Cash on delivery", "Pay after your order arrives and you're satisfied."],
       ["Quality guarantee", "If you don't like it, you can return it."],
     ]},
-    products: { eyebrow: "Our shop", title: "Our selected products", all: "All", order: "Order on WhatsApp", ask: "Contact for price" },
+    products: { eyebrow: "Try it yourself", title: "Fill your store", hint: "Add your product photos and prices and picture your store live 👇", uploadHint: "Click to add your product photo", namePh: "Product name", pricePh: "Price", addProduct: "Add product", order: "Order on WhatsApp", ask: "Contact for price", heroUpload: "Click to add your store photo" },
     featured: { eyebrow: "Special offer", title: "A curated set at a special price", desc: "A selection of our finest natural products, with a gift on every order.", cta: "Order now" },
     how: { eyebrow: "Easy and fast", title: "How to order?", steps: [
       ["Pick your product", "Browse the shop and choose what you want."],

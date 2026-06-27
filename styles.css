@@ -3,22 +3,25 @@
    Palette: deep olive, warm amber, bone/cream, charcoal
    ============================================================ */
 :root {
-  --olive-900: #2c3315;
-  --olive-700: #4a5a23;
-  --olive-500: #6b7d35;
-  --amber-600: #c98a2b;
-  --amber-500: #e0a43c;
-  --amber-100: #f3e4c4;
-  --bone: #f7f3ea;
-  --bone-200: #efe8d8;
-  --paper: #fffdf8;
-  --ink: #24210d;
-  --ink-soft: #5f5a45;
-  --line: #e7dec9;
-  --radius: 18px;
-  --radius-sm: 12px;
-  --shadow-sm: 0 2px 10px rgba(44, 51, 21, 0.06);
-  --shadow: 0 18px 50px -20px rgba(44, 51, 21, 0.28);
+  /* لوحة هادئة عصرية: سيج + طيني ناعم + رمادي دافئ */
+  --olive-900: #36392f; /* deep ink-sage */
+  --olive-700: #677061; /* sage deep */
+  --olive-500: #93a08d; /* sage */
+  --amber-600: #a98c72; /* clay deep (accent text) */
+  --amber-500: #c8ad96; /* clay (accent) */
+  --amber-100: #ece5da; /* soft sand */
+  --honey-light: #ece5da;
+  --bone: #f4f2ec;
+  --bone-200: #ebe7dd;
+  --cream: #f4f2ec;
+  --paper: #fcfbf7;
+  --ink: #36392f;
+  --ink-soft: #847f73;
+  --line: #e6e1d6;
+  --radius: 22px;
+  --radius-sm: 14px;
+  --shadow-sm: 0 2px 12px rgba(54, 57, 47, 0.05);
+  --shadow: 0 24px 60px -28px rgba(54, 57, 47, 0.20);
   --maxw: 1180px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -246,6 +249,52 @@ img { max-width: 100%; display: block; }
 .price__was { color: var(--ink-soft); text-decoration: line-through; font-size: 0.9rem; }
 .price__ask { font-weight: 700; color: var(--olive-700); font-size: 1.02rem; }
 .card .btn--wa { margin-top: 6px; }
+
+/* ---------- uploadable image zones (client fills) ---------- */
+.uploadable {
+  position: relative; cursor: pointer; display: grid; place-items: center;
+  background-color: var(--bone-200); background-size: cover; background-position: center;
+  border: 1.5px dashed var(--line); transition: border-color .25s, background-color .25s;
+}
+.uploadable:hover { border-color: var(--amber-500); background-color: #e3ddd0; }
+.uploadable .up-hint {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--ink-soft); font-weight: 700; font-size: 0.9rem; text-align: center;
+  pointer-events: none; padding: 16px;
+}
+.uploadable .up-hint svg { width: 30px; height: 30px; opacity: .7; }
+.uploadable.has-img { border-style: solid; border-color: var(--line); background-color: transparent; }
+.uploadable.has-img .up-hint { display: none; }
+.hero__frame.uploadable::after { display: none; }
+.hero__frame.uploadable { background: var(--bone-200); }
+
+/* editable product card */
+.card--edit .card__img { aspect-ratio: 4/3; }
+.edit-name {
+  font-family: inherit; font-weight: 700; font-size: 1.12rem; color: var(--olive-900);
+  border: none; background: transparent; outline: none; width: 100%;
+  border-bottom: 1.5px dashed transparent; padding: 2px 0; transition: border-color .2s;
+}
+.edit-name:focus { border-bottom-color: var(--amber-500); }
+.edit-name::placeholder { color: var(--ink-soft); opacity: .6; font-weight: 500; }
+.edit-price { display: flex; align-items: baseline; gap: 6px; }
+.edit-price-input {
+  font-family: "El Messiri", serif; font-weight: 700; font-size: 1.35rem; color: var(--olive-700);
+  border: none; background: transparent; outline: none; width: 90px;
+  border-bottom: 1.5px dashed var(--line); padding: 2px 0;
+}
+.edit-price-input:focus { border-bottom-color: var(--amber-500); }
+.edit-price .cur { font-family: "El Messiri", serif; font-size: 1.1rem; color: var(--olive-700); }
+
+/* add-product button (dashed card) */
+.add-card {
+  border: 2px dashed var(--line); border-radius: var(--radius); background: transparent;
+  min-height: 220px; display: grid; place-items: center; cursor: pointer; gap: 8px;
+  color: var(--ink-soft); font-family: inherit; font-weight: 700; font-size: 1rem;
+  transition: border-color .25s, color .25s, background .25s;
+}
+.add-card:hover { border-color: var(--olive-500); color: var(--olive-700); background: var(--paper); }
+.add-card span.plus { font-size: 2rem; line-height: 1; }
 
 /* ---------- feature band ---------- */
 .feature-band {
