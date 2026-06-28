@@ -102,7 +102,11 @@ function renderReviews() {
     .join("");
 }
 
-function serviceCard(s) {
+const cart = new Set();
+const svcPriceLabel = (s) => s.price === 0 ? UI[lang].services.free : `${serviceCurrency}${s.price}${s.unit ? t(s.unit, lang) : ""}`;
+
+function serviceCard(s, i) {
+  const added = cart.has(i);
   const price = s.price === 0
     ? `<span class="svc-price svc-price--free">${UI[lang].services.free}</span>`
     : `<span class="svc-price">${serviceCurrency}${s.price}<small>${s.unit ? t(s.unit, lang) : ""}</small></span>`;
@@ -112,9 +116,35 @@ function serviceCard(s) {
       <h3 class="svc-name">${t(s.name, lang)}</h3>
       <p class="svc-desc">${t(s.desc, lang)}</p>
       ${price}
+      <button class="btn svc-add${added ? " is-added" : ""}" data-i="${i}">${added ? UI[lang].services.added : UI[lang].services.add}</button>
     </article>`;
 }
-function renderServices() { $("servicesGrid").innerHTML = services.map(serviceCard).join(""); }
+function renderServices() {
+  $("servicesGrid").innerHTML = services.map((s, i) => serviceCard(s, i)).join("");
+  renderCart();
+}
+function renderCart() {
+  const box = $("svcCart");
+  if (!cart.size) { box.hidden = true; box.innerHTML = ""; return; }
+  box.hidden = false;
+  let total = 0;
+  const rows = [...cart].map((i) => {
+    const s = services[i];
+    if (s.price) total += s.price;
+    return `<li><button class="cart-rm" data-i="${i}" aria-label="x">×</button><span class="cart-nm">${t(s.name, lang)}</span><b>${svcPriceLabel(s)}</b></li>`;
+  }).join("");
+  box.innerHTML = `
+    <h3 class="cart-title">🛒 ${UI[lang].services.cartTitle}</h3>
+    <ul class="cart-list">${rows}</ul>
+    <div class="cart-total">${UI[lang].services.total}: <b>${serviceCurrency}${total}</b></div>
+    <button class="btn btn--wa cart-send">${UI[lang].services.checkout}</button>`;
+}
+function checkoutCart() {
+  if (!cart.size) return;
+  const lines = [...cart].map((i) => `- ${t(services[i].name, lang)} (${svcPriceLabel(services[i])})`);
+  const msg = `${UI[lang].services.intro}\n${lines.join("\n")}`;
+  window.open("https://wa.me/" + business.ownerWhatsapp + "?text=" + encodeURIComponent(msg), "_blank");
+}
 
 function renderList(id, items) {
   $(id).innerHTML = items.map((s) => `<li><h3>${s[0]}</h3><p>${s[1]}</p></li>`).join("");
@@ -216,6 +246,20 @@ function init() {
 
   window.addEventListener("cz-reset", renderStatic);
   attachTilt();
+
+  // services cart
+  $("servicesGrid").addEventListener("click", (e) => {
+    const b = e.target.closest(".svc-add");
+    if (!b) return;
+    const i = +b.dataset.i;
+    cart.has(i) ? cart.delete(i) : cart.add(i);
+    renderServices();
+  });
+  $("svcCart").addEventListener("click", (e) => {
+    const rm = e.target.closest(".cart-rm");
+    if (rm) { cart.delete(+rm.dataset.i); renderServices(); return; }
+    if (e.target.closest(".cart-send")) checkoutCart();
+  });
 
   const header = $("header");
   const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 10);

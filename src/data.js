@@ -6,7 +6,8 @@
 export const business = {
   name: "المتجر",
   currency: "₺",
-  whatsapp: "905000000000", // ← ضع رقم واتسابك (بدون + وبدون مسافات)
+  whatsapp: "905000000000", // رقم المتجر التجريبي (placeholder لأزرار طلب المنتجات)
+  ownerWhatsapp: "905555520223", // رقم عمر — تُرسل إليه طلبات الخدمات (السلة)
 };
 
 export const delivery = {

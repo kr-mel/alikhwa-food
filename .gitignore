@@ -13,3 +13,7 @@ IMAGE-PROMPTS.md
 convert-images.mjs
 .wrangler/
 *.log
+
+# ملفات خاصة بعمر (لا تُرفع للريبو العام)
+دليل-التسعير-والتفاوض.md
+pricing-guide.md
