@@ -135,7 +135,7 @@ function init() {
     accent = 0; custom = ""; font = 0; soft = true; nameInput.value = ""; colorInput.value = "#c8ad96";
     applySwatch(0); applyFont(0); applyRadius(true);
     Object.values(LS).forEach((k) => localStorage.removeItem(k));
-    document.dispatchEvent(new CustomEvent("cz-reset")); paint();
+    window.dispatchEvent(new CustomEvent("cz-reset")); paint();
   };
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") panel.classList.remove("open"); });
   window.addEventListener("langchange", () => { labels(); if (nameInput.value) applyName(nameInput.value); });
