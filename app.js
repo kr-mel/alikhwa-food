@@ -174,6 +174,8 @@ function applyLang(newLang) {
   renderLinks();
   const h = document.querySelector("#heroFrame .up-text");
   if (h) h.textContent = UI[lang].products.heroUpload;
+  const cv = document.querySelector("#coverBanner .up-text");
+  if (cv) cv.textContent = UI[lang].products.coverUpload;
   document.querySelectorAll(".lang-btn").forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
   window.dispatchEvent(new CustomEvent("langchange", { detail: { lang } }));
   initReveal();
@@ -234,6 +236,8 @@ function init() {
   buildSwitcher();
   const hero = $("heroFrame");
   if (hero) makeUploadable(hero, UI[lang].products.heroUpload);
+  const cover = $("coverBanner");
+  if (cover) makeUploadable(cover, UI[lang].products.coverUpload);
   applyLang(lang);
 
   const navToggle = $("navToggle"), nav = $("primaryNav");

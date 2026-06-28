@@ -486,3 +486,8 @@ body, .header, .card, .svc-card, .why__card, .review, .steps li, .footer, .ticke
 .cart-rm { background: none; border: none; color: var(--amber-600); font-size: 1.25rem; cursor: pointer; line-height: 1; padding: 0 4px; }
 .cart-total { border-top: 1px solid var(--line); padding-top: 12px; margin-bottom: 14px; color: var(--ink-soft); }
 .cart-total b { color: var(--olive-900); font-family: var(--font-head); font-size: 1.2rem; }
+
+/* ---------- cover banner (client uploads) ---------- */
+.cover { width: 100%; }
+.cover__img { width: 100%; aspect-ratio: 5 / 1; border-inline: none; border-top: none; }
+@media (max-width: 700px) { .cover__img { aspect-ratio: 5 / 2; } }
