@@ -26,7 +26,15 @@ function darken(hex, a = 0.17) {
   const f = (v) => Math.max(0, Math.round(v * (1 - a))).toString(16).padStart(2, "0");
   return "#" + f((n >> 16) & 255) + f((n >> 8) & 255) + f(n & 255);
 }
-function setAccent(main, deep) { root.setProperty("--amber-500", main); root.setProperty("--amber-600", deep || darken(main)); }
+function luminance(hex) {
+  const n = parseInt(hex.slice(1), 16), f = (c) => { c /= 255; return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; };
+  return 0.2126 * f((n >> 16) & 255) + 0.7152 * f((n >> 8) & 255) + 0.0722 * f(n & 255);
+}
+function setAccent(main, deep) {
+  root.setProperty("--amber-500", main);
+  root.setProperty("--amber-600", deep || darken(main));
+  root.setProperty("--on-accent", luminance(main) > 0.45 ? "#36392f" : "#ffffff");
+}
 function applySwatch(i) { const s = SWATCHES[i] || SWATCHES[0]; setAccent(s[0], s[1]); }
 function applyRadius(soft) { root.setProperty("--radius", soft ? "22px" : "6px"); root.setProperty("--radius-sm", soft ? "14px" : "4px"); }
 function applyName(name) { if (name) document.querySelectorAll(".logo__text").forEach((el) => (el.textContent = name)); }
