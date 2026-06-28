@@ -10,7 +10,7 @@ export const business = {
 };
 
 export const delivery = {
-  areas: { ar: "سوريا وتركيا", tr: "Suriye ve Türkiye", en: "Syria and Turkey" },
+  areas: { ar: "منطقتك", tr: "bölgeniz", en: "your area" },
   cod: true,
   free: true,
 };
