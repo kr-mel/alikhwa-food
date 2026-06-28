@@ -24,19 +24,21 @@
   --shadow: 0 24px 60px -28px rgba(54, 57, 47, 0.20);
   --maxw: 1180px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-head: "El Messiri", serif;
+  --font-body: "Tajawal", sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 body {
-  font-family: "Tajawal", system-ui, sans-serif;
+  font-family: var(--font-body, system-ui, sans-serif);
   color: var(--ink);
   background: var(--bone);
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-h1, h2, h3, h4, .logo__text { font-family: "El Messiri", serif; line-height: 1.25; font-weight: 700; }
+h1, h2, h3, h4, .logo__text { font-family: var(--font-head); line-height: 1.25; font-weight: 700; }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 .container { width: min(var(--maxw), 90%); margin-inline: auto; }
@@ -181,7 +183,7 @@ img { max-width: 100%; display: block; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; }
 .hero__stats { list-style: none; display: flex; gap: 30px; margin-top: 38px; padding-top: 26px; border-top: 1px solid var(--line); }
 .hero__stats li { display: flex; flex-direction: column; }
-.hero__stats strong { font-family: "El Messiri", serif; font-size: 1.5rem; color: var(--olive-700); }
+.hero__stats strong { font-family: var(--font-head); font-size: 1.5rem; color: var(--olive-700); }
 .hero__stats span { font-size: 0.85rem; color: var(--ink-soft); }
 
 .hero__media { position: relative; }
@@ -260,7 +262,7 @@ img { max-width: 100%; display: block; }
 .card__desc { color: var(--ink-soft); font-size: 0.9rem; flex: 1; }
 .card__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 4px; }
 .price { display: flex; align-items: baseline; gap: 8px; }
-.price__now { font-family: "El Messiri", serif; font-size: 1.4rem; font-weight: 700; color: var(--olive-900); }
+.price__now { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--olive-900); }
 .price__was { color: var(--ink-soft); text-decoration: line-through; font-size: 0.9rem; }
 .price__ask { font-weight: 700; color: var(--olive-700); font-size: 1.02rem; }
 .card .btn--wa { margin-top: 6px; }
@@ -294,12 +296,12 @@ img { max-width: 100%; display: block; }
 .edit-name::placeholder { color: var(--ink-soft); opacity: .6; font-weight: 500; }
 .edit-price { display: flex; align-items: baseline; gap: 6px; }
 .edit-price-input {
-  font-family: "El Messiri", serif; font-weight: 700; font-size: 1.35rem; color: var(--olive-700);
+  font-family: var(--font-head); font-weight: 700; font-size: 1.35rem; color: var(--olive-700);
   border: none; background: transparent; outline: none; width: 90px;
   border-bottom: 1.5px dashed var(--line); padding: 2px 0;
 }
 .edit-price-input:focus { border-bottom-color: var(--amber-500); }
-.edit-price .cur { font-family: "El Messiri", serif; font-size: 1.1rem; color: var(--olive-700); }
+.edit-price .cur { font-family: var(--font-head); font-size: 1.1rem; color: var(--olive-700); }
 
 /* add-product button (dashed card) */
 .add-card {
@@ -323,7 +325,7 @@ img { max-width: 100%; display: block; }
 .feature-band__copy h2 { color: #fff; font-size: clamp(1.6rem, 3.4vw, 2.4rem); }
 .feature-band__copy p { color: rgba(247,243,234,0.85); margin: 14px 0 20px; max-width: 46ch; }
 .feature-band__price { display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px; }
-.feature-band__price .now { font-family: "El Messiri", serif; font-size: 2rem; color: var(--amber-500); font-weight: 700; }
+.feature-band__price .now { font-family: var(--font-head); font-size: 2rem; color: var(--amber-500); font-weight: 700; }
 .feature-band__price .was { color: rgba(247,243,234,0.6); text-decoration: line-through; }
 
 /* ---------- how to order ---------- */
@@ -337,7 +339,7 @@ img { max-width: 100%; display: block; }
   counter-increment: step; content: counter(step);
   position: absolute; inset-inline-start: 50%; top: -22px; transform: translateX(50%);
   width: 44px; height: 44px; border-radius: 50%; background: var(--amber-500); color: var(--olive-900);
-  font-family: "El Messiri", serif; font-weight: 700; font-size: 1.3rem; display: grid; place-items: center;
+  font-family: var(--font-head); font-weight: 700; font-size: 1.3rem; display: grid; place-items: center;
   box-shadow: 0 8px 18px -8px rgba(201,138,43,0.9);
 }
 .steps h3 { color: var(--olive-900); margin-bottom: 6px; font-size: 1.15rem; }
@@ -354,7 +356,7 @@ img { max-width: 100%; display: block; }
 .review__text { color: var(--ink); font-size: 1.02rem; }
 .review__who { display: flex; align-items: center; gap: 10px; margin-top: auto; color: var(--ink-soft); font-size: 0.88rem; font-weight: 700; }
 .review__avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--amber-100); color: var(--olive-700);
-  display: grid; place-items: center; font-family: "El Messiri", serif; font-weight: 700; }
+  display: grid; place-items: center; font-family: var(--font-head); font-weight: 700; }
 
 /* ---------- process (للتاجر) ---------- */
 .process { padding: clamp(56px, 8vw, 96px) 0; }
@@ -384,8 +386,8 @@ img { max-width: 100%; display: block; }
 }
 .svc-name { font-size: 1.2rem; color: var(--olive-900); }
 .svc-desc { color: var(--ink-soft); font-size: 0.9rem; flex: 1; }
-.svc-price { font-family: "El Messiri", serif; font-size: 1.7rem; font-weight: 700; color: var(--olive-700); margin-top: 6px; }
-.svc-price small { font-family: "Tajawal", sans-serif; font-size: 0.85rem; font-weight: 500; color: var(--ink-soft); }
+.svc-price { font-family: var(--font-head); font-size: 1.7rem; font-weight: 700; color: var(--olive-700); margin-top: 6px; }
+.svc-price small { font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; color: var(--ink-soft); }
 .svc-price--free { color: #1faa52; font-size: 1.2rem; }
 .svc-note { position: relative; text-align: center; margin-top: 26px; font-size: 0.85rem; color: rgba(247,243,234,0.75); }
 
