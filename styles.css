@@ -425,6 +425,12 @@ img { max-width: 100%; display: block; }
   .nav-toggle { display: flex; }
   #ctaHeader { display: none; }
   .anno--logo { display: none; }
+  .header__inner { gap: 12px; }
+  .logo { gap: 7px; }
+  .logo__text { font-size: 1.02rem; white-space: nowrap; }
+  .logo__icon { width: 22px; height: 22px; }
+  .lang-btn { padding: 5px 7px; font-size: 0.68rem; }
+  .hero__badge { inset-inline-start: 10px; bottom: 10px; font-size: 0.8rem; padding: 8px 12px; }
   .nav {
     display: none; position: absolute; top: 100%; inset-inline: 0;
     flex-direction: column; gap: 4px; background: var(--paper);
