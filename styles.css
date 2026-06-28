@@ -497,3 +497,26 @@ body, .header, .card, .svc-card, .why__card, .review, .steps li, .footer, .ticke
 .cover { width: 100%; }
 .cover__img { width: 100%; aspect-ratio: 5 / 1; border-inline: none; border-top: none; }
 @media (max-width: 700px) { .cover__img { aspect-ratio: 5 / 2; } }
+
+/* ============================================================
+   تحسين تجربة الجوال — كاروسيل أفقي بالسحب
+   ============================================================ */
+@media (max-width: 700px) {
+  .why__grid, .products__grid, .svc-grid, .reviews__grid {
+    display: flex; gap: 14px; overflow-x: auto; overflow-y: visible;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    margin-inline: -5%; padding: 6px 5% 18px; scrollbar-width: none;
+  }
+  .why__grid::-webkit-scrollbar, .products__grid::-webkit-scrollbar,
+  .svc-grid::-webkit-scrollbar, .reviews__grid::-webkit-scrollbar { display: none; }
+  .why__grid > *, .products__grid > *, .svc-grid > *, .reviews__grid > * {
+    flex: 0 0 82%; scroll-snap-align: center;
+  }
+  .add-card { min-height: auto; }
+  .why__grid .reveal, .products__grid .reveal,
+  .svc-grid .reveal, .reviews__grid .reveal { opacity: 1 !important; transform: none !important; }
+  .cover__img { aspect-ratio: 4 / 1; }
+  .hero__frame { aspect-ratio: 5 / 4; }
+  .hero { padding-top: 24px; }
+  .section-head { margin-bottom: 28px; }
+}
