@@ -180,6 +180,25 @@ function initReveal() {
   items.forEach((el) => io.observe(el));
 }
 
+/* ---------- 3D tilt on cards (fine pointer only) ---------- */
+function attachTilt() {
+  if (!window.matchMedia("(pointer:fine)").matches) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const sel = ".card, .why__card, .svc-card";
+  document.addEventListener("pointermove", (e) => {
+    const card = e.target.closest(sel);
+    if (!card) return;
+    const r = card.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `perspective(800px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 5).toFixed(2)}deg) translateY(-6px)`;
+  });
+  document.addEventListener("pointerout", (e) => {
+    const card = e.target.closest(sel);
+    if (card) card.style.transform = "";
+  });
+}
+
 /* ---------- init ---------- */
 function init() {
   buildSwitcher();
@@ -196,6 +215,7 @@ function init() {
   }
 
   window.addEventListener("cz-reset", renderStatic);
+  attachTilt();
 
   const header = $("header");
   const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 10);

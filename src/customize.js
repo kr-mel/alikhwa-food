@@ -1,5 +1,5 @@
 // لوحة تحكّم للزائر ليتخيّل متجره: لون (جاهز + مخصص)، خط، اسم، زوايا + شريط تقدّم.
-const LS = { accent: "cz_accent", color: "cz_color", font: "cz_font", name: "cz_name", radius: "cz_radius" };
+const LS = { accent: "cz_accent", color: "cz_color", font: "cz_font", name: "cz_name", radius: "cz_radius", theme: "cz_theme" };
 
 const SWATCHES = [
   ["#c8ad96", "#a98c72"], ["#9bb39a", "#6f8a6e"], ["#d09b86", "#b06f57"],
@@ -14,9 +14,9 @@ const FONTS = [
 ];
 
 const T = {
-  ar: { btn: "🎨 خصّص متجرك", title: "خصّص متجرك", hint: "غيّر اللون والخط والاسم وتخيّل متجرك 👇", color: "اللون", custom: "لون مخصص", font: "الخط", fonts: ["أنيق", "عصري", "كلاسيكي", "ناعم"], name: "اسم المتجر", namePh: "اكتب اسم متجرك", corners: "الزوايا", soft: "ناعمة", sharp: "حادة", reset: "إرجاع" },
-  tr: { btn: "🎨 Özelleştir", title: "Mağazanı özelleştir", hint: "Renk, yazı tipi ve adı değiştir 👇", color: "Renk", custom: "Özel renk", font: "Yazı tipi", fonts: ["Zarif", "Modern", "Klasik", "Yumuşak"], name: "Mağaza adı", namePh: "Mağaza adını yaz", corners: "Köşeler", soft: "Yumuşak", sharp: "Keskin", reset: "Sıfırla" },
-  en: { btn: "🎨 Customize", title: "Customize your store", hint: "Change color, font and name — picture your store 👇", color: "Color", custom: "Custom", font: "Font", fonts: ["Elegant", "Modern", "Classic", "Soft"], name: "Store name", namePh: "Type your store name", corners: "Corners", soft: "Soft", sharp: "Sharp", reset: "Reset" },
+  ar: { btn: "🎨 خصّص متجرك", title: "خصّص متجرك", hint: "غيّر اللون والخط والاسم وتخيّل متجرك 👇", color: "اللون", custom: "لون مخصص", font: "الخط", fonts: ["أنيق", "عصري", "كلاسيكي", "ناعم"], name: "اسم المتجر", namePh: "اكتب اسم متجرك", corners: "الزوايا", soft: "ناعمة", sharp: "حادة", theme: "الإضاءة", light: "فاتح", dark: "ليلي", reset: "إرجاع" },
+  tr: { btn: "🎨 Özelleştir", title: "Mağazanı özelleştir", hint: "Renk, yazı tipi ve adı değiştir 👇", color: "Renk", custom: "Özel renk", font: "Yazı tipi", fonts: ["Zarif", "Modern", "Klasik", "Yumuşak"], name: "Mağaza adı", namePh: "Mağaza adını yaz", corners: "Köşeler", soft: "Yumuşak", sharp: "Keskin", theme: "Tema", light: "Açık", dark: "Koyu", reset: "Sıfırla" },
+  en: { btn: "🎨 Customize", title: "Customize your store", hint: "Change color, font and name — picture your store 👇", color: "Color", custom: "Custom", font: "Font", fonts: ["Elegant", "Modern", "Classic", "Soft"], name: "Store name", namePh: "Type your store name", corners: "Corners", soft: "Soft", sharp: "Sharp", theme: "Theme", light: "Light", dark: "Dark", reset: "Reset" },
 };
 const curLang = () => { const l = localStorage.getItem("lang"); return ["ar", "tr", "en"].includes(l) ? l : "ar"; };
 const root = document.documentElement.style;
@@ -38,6 +38,7 @@ function setAccent(main, deep) {
 function applySwatch(i) { const s = SWATCHES[i] || SWATCHES[0]; setAccent(s[0], s[1]); }
 function applyRadius(soft) { root.setProperty("--radius", soft ? "22px" : "6px"); root.setProperty("--radius-sm", soft ? "14px" : "4px"); }
 function applyName(name) { if (name) document.querySelectorAll(".logo__text").forEach((el) => (el.textContent = name)); }
+function applyTheme(t) { if (t === "dark") document.documentElement.setAttribute("data-theme", "dark"); else document.documentElement.removeAttribute("data-theme"); }
 
 const loaded = new Set();
 function applyFont(i) {
@@ -85,9 +86,10 @@ function init() {
   let custom = localStorage.getItem(LS.color) || "";
   let font = parseInt(localStorage.getItem(LS.font) ?? "0", 10) || 0;
   let soft = localStorage.getItem(LS.radius) !== "sharp";
+  let theme = localStorage.getItem(LS.theme) || "light";
   const savedName = localStorage.getItem(LS.name) || "";
   if (custom) setAccent(custom); else applySwatch(accent);
-  applyFont(font); applyRadius(soft); applyName(savedName);
+  applyFont(font); applyRadius(soft); applyName(savedName); applyTheme(theme);
 
   const btn = el(`<button class="cz-btn"></button>`);
   const panel = el(`
@@ -97,6 +99,7 @@ function init() {
       <div class="cz-row"><span class="cz-l-font"></span><div class="cz-fonts"></div></div>
       <div class="cz-row"><span class="cz-l-name"></span><input class="cz-name" type="text"></div>
       <div class="cz-row"><span class="cz-l-corners"></span><div class="cz-corners"><button data-soft="1"></button><button data-soft="0"></button></div></div>
+      <div class="cz-row"><span class="cz-l-theme"></span><div class="cz-corners cz-theme"><button data-th="light"></button><button data-th="dark"></button></div></div>
       <button class="cz-reset"></button>
     </div>`);
   document.body.append(btn, panel);
@@ -108,13 +111,15 @@ function init() {
   const fontsWrap = panel.querySelector(".cz-fonts");
   fontsWrap.innerHTML = FONTS.map((_, i) => `<button data-f="${i}"></button>`).join("");
   const nameInput = panel.querySelector(".cz-name"); nameInput.value = savedName;
-  const cornerBtns = panel.querySelectorAll(".cz-corners button");
+  const cornerBtns = panel.querySelectorAll("[data-soft]");
+  const themeBtns = panel.querySelectorAll("[data-th]");
   const fontBtns = fontsWrap.querySelectorAll("button");
 
   function paint() {
     sw.querySelectorAll(".cz-sw").forEach((b) => b.classList.toggle("active", !custom && +b.dataset.i === accent));
     fontBtns.forEach((b) => b.classList.toggle("active", +b.dataset.f === font));
     cornerBtns.forEach((b) => b.classList.toggle("active", (b.dataset.soft === "1") === soft));
+    themeBtns.forEach((b) => b.classList.toggle("active", b.dataset.th === theme));
   }
   function labels() {
     const t = T[curLang()];
@@ -127,6 +132,8 @@ function init() {
     panel.querySelector(".cz-l-corners").textContent = t.corners;
     nameInput.placeholder = t.namePh;
     cornerBtns[0].textContent = t.soft; cornerBtns[1].textContent = t.sharp;
+    panel.querySelector(".cz-l-theme").textContent = t.theme;
+    themeBtns[0].textContent = t.light; themeBtns[1].textContent = t.dark;
     panel.querySelector(".cz-reset").textContent = t.reset;
     fontBtns.forEach((b, i) => (b.textContent = t.fonts[i]));
     colorInput.title = t.custom;
@@ -138,10 +145,11 @@ function init() {
   colorInput.oninput = () => { custom = colorInput.value; setAccent(custom); localStorage.setItem(LS.color, custom); paint(); };
   fontsWrap.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; font = +b.dataset.f; applyFont(font); localStorage.setItem(LS.font, font); paint(); };
   cornerBtns.forEach((b) => (b.onclick = () => { soft = b.dataset.soft === "1"; applyRadius(soft); localStorage.setItem(LS.radius, soft ? "soft" : "sharp"); paint(); }));
+  themeBtns.forEach((b) => (b.onclick = () => { theme = b.dataset.th; applyTheme(theme); localStorage.setItem(LS.theme, theme); paint(); }));
   nameInput.addEventListener("input", () => { applyName(nameInput.value); localStorage.setItem(LS.name, nameInput.value); });
   panel.querySelector(".cz-reset").onclick = () => {
-    accent = 0; custom = ""; font = 0; soft = true; nameInput.value = ""; colorInput.value = "#c8ad96";
-    applySwatch(0); applyFont(0); applyRadius(true);
+    accent = 0; custom = ""; font = 0; soft = true; theme = "light"; nameInput.value = ""; colorInput.value = "#c8ad96";
+    applySwatch(0); applyFont(0); applyRadius(true); applyTheme("light");
     Object.values(LS).forEach((k) => localStorage.removeItem(k));
     window.dispatchEvent(new CustomEvent("cz-reset")); paint();
   };

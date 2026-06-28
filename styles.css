@@ -442,3 +442,33 @@ img { max-width: 100%; display: block; }
   .reveal { opacity: 1 !important; transform: none !important; }
   .hero__copy > *, .hero__media { opacity: 1 !important; transform: none !important; }
 }
+
+/* ============================================================
+   وضع ليلي (Dark mode)
+   ============================================================ */
+[data-theme="dark"] {
+  --bone: #1b1d17; --bone-200: #23261f; --cream: #1b1d17; --paper: #24271f;
+  --ink: #ece7dc; --ink-soft: #a8a394; --line: #353a30;
+  --olive-900: #f0ebe0; --olive-700: #b3bfa8;
+}
+[data-theme="dark"] .ticker,
+[data-theme="dark"] .footer,
+[data-theme="dark"] .cz-btn { background: #13150f; }
+[data-theme="dark"] .services-sec { background: linear-gradient(135deg, #191b15, #23261f); }
+[data-theme="dark"] .header { background: rgba(27,29,23,.8); }
+[data-theme="dark"] .header.scrolled { background: rgba(27,29,23,.96); }
+[data-theme="dark"] .svc-card,
+[data-theme="dark"] .review,
+[data-theme="dark"] .steps li,
+[data-theme="dark"] .why__card,
+[data-theme="dark"] .card { background: var(--paper); }
+[data-theme="dark"] .eyebrow { background: rgba(255,255,255,.08); color: var(--olive-700); }
+[data-theme="dark"] .card__tag { background: rgba(36,39,31,.92); color: var(--olive-700); }
+[data-theme="dark"] .card::after,
+[data-theme="dark"] .why__card::after,
+[data-theme="dark"] .svc-card::after { background: linear-gradient(100deg, transparent, rgba(255,255,255,.10), transparent); }
+[data-theme="dark"] .btn--ghost:hover { color: #1b1d17; }
+[data-theme="dark"] .cw-msg.bot,
+[data-theme="dark"] .cz-name { background: var(--bone-200); color: var(--ink); }
+html { transition: background .3s var(--ease); }
+body, .header, .card, .svc-card, .why__card, .review, .steps li, .footer, .ticker { transition: background-color .3s var(--ease), color .3s var(--ease); }
