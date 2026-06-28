@@ -195,6 +195,8 @@ function init() {
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
   }
 
+  window.addEventListener("cz-reset", renderStatic);
+
   const header = $("header");
   const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 10);
   onScroll();

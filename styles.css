@@ -154,13 +154,28 @@ img { max-width: 100%; display: block; }
 
 /* ---------- hero ---------- */
 .hero {
-  position: relative; padding: clamp(40px, 7vw, 88px) 0 clamp(56px, 8vw, 104px);
+  position: relative; overflow: hidden; padding: clamp(40px, 7vw, 88px) 0 clamp(56px, 8vw, 104px);
   background:
     radial-gradient(120% 90% at 85% 0%, rgba(224,164,60,0.12), transparent 55%),
     radial-gradient(90% 80% at 5% 100%, rgba(107,125,53,0.10), transparent 50%),
     var(--bone);
 }
-.hero__grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+.hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+
+/* atmospheric floating blobs */
+.hero__blob { position: absolute; z-index: 0; border-radius: 50%; filter: blur(60px); opacity: .5; pointer-events: none; }
+.hero__blob.b1 { width: 380px; height: 380px; background: var(--amber-500); inset-inline-start: -80px; top: -60px; animation: floatBlob 14s ease-in-out infinite; }
+.hero__blob.b2 { width: 320px; height: 320px; background: var(--olive-500); inset-inline-end: -60px; bottom: -80px; animation: floatBlob 18s ease-in-out infinite reverse; }
+@keyframes floatBlob { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,40px) scale(1.12); } }
+
+/* card sheen sweep on hover */
+.card, .why__card, .svc-card { position: relative; overflow: hidden; }
+.card::after, .why__card::after, .svc-card::after {
+  content: ""; position: absolute; top: 0; inset-inline-start: -120%; width: 70%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.45), transparent);
+  transform: skewX(-18deg); transition: inset-inline-start .6s var(--ease); pointer-events: none; z-index: 3;
+}
+.card:hover::after, .why__card:hover::after, .svc-card:hover::after { inset-inline-start: 130%; }
 .hero h1 { font-size: clamp(2.4rem, 6vw, 4.1rem); color: var(--olive-900); letter-spacing: -0.01em; }
 .lead { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--ink-soft); max-width: 46ch; margin: 18px 0 28px; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; }
