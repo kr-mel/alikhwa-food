@@ -146,6 +146,9 @@ function init() {
     window.dispatchEvent(new CustomEvent("cz-reset")); paint();
   };
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") panel.classList.remove("open"); });
+  document.addEventListener("click", (e) => {
+    if (panel.classList.contains("open") && !panel.contains(e.target) && !btn.contains(e.target)) panel.classList.remove("open");
+  });
   window.addEventListener("langchange", () => { labels(); if (nameInput.value) applyName(nameInput.value); });
 
   const bar = document.getElementById("scrollProgress");
