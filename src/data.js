@@ -110,17 +110,17 @@ export const products = [
 export const serviceCurrency = "$";
 export const services = [
   {
-    price: 120, featured: true,
+    price: 150, featured: true,
     name: { ar: "موقع متجر احترافي", tr: "Profesyonel mağaza sitesi", en: "Professional store website" },
     desc: { ar: "صفحة واحدة سريعة وأنيقة، متجاوبة مع الموبايل، باسمك وألوانك.", tr: "Tek sayfa, hızlı ve şık, mobil uyumlu, adınız ve renklerinizle.", en: "Fast, elegant one-page site, mobile-friendly, in your name and colors." },
   },
   {
-    price: 80, featured: true,
+    price: 100, featured: true,
     name: { ar: "مساعد ذكي (بوت)", tr: "Akıllı asistan (bot)", en: "Smart assistant (bot)" },
     desc: { ar: "يرد على زبائنك ٢٤/٧ بالعربي والتركي والإنجليزي: أسعار، توصيل، استفسارات.", tr: "Müşterilerinize 7/24 Arapça, Türkçe ve İngilizce yanıt verir.", en: "Replies to your customers 24/7 in Arabic, Turkish and English." },
   },
   {
-    price: 5, unit: { ar: "/ صورة", tr: "/ görsel", en: "/ photo" },
+    price: 6, unit: { ar: "/ صورة", tr: "/ görsel", en: "/ photo" },
     name: { ar: "صور منتجات احترافية", tr: "Profesyonel ürün görselleri", en: "Professional product photos" },
     desc: { ar: "صور عالية الجودة لمنتجاتك بالذكاء الاصطناعي — بدون جلسة تصوير.", tr: "Yapay zekâ ile yüksek kaliteli ürün görselleri — çekim gerekmez.", en: "High-quality AI product photos — no photoshoot needed." },
   },
@@ -130,12 +130,12 @@ export const services = [
     desc: { ar: "زر طلب مباشر لكل منتج يفتح واتساب برسالة جاهزة.", tr: "Her ürün için hazır mesajla WhatsApp açan sipariş butonu.", en: "A direct order button per product that opens WhatsApp with a ready message." },
   },
   {
-    price: 30, unit: { ar: "/ سنة", tr: "/ yıl", en: "/ year" },
+    price: 60, unit: { ar: "/ سنة", tr: "/ yıl", en: "/ year" },
     name: { ar: "استضافة ونشر", tr: "Barındırma ve yayın", en: "Hosting & publishing" },
     desc: { ar: "رفع الموقع أونلاين برابط خاص + تجديد سنوي.", tr: "Siteyi özel bir bağlantıyla yayına alma + yıllık yenileme.", en: "Publishing the site with a dedicated link + yearly renewal." },
   },
   {
-    price: 40,
+    price: 55,
     name: { ar: "تحسين الظهور بجوجل (SEO)", tr: "Google görünürlüğü (SEO)", en: "Google visibility (SEO)" },
     desc: { ar: "إعداد الموقع ليظهر بنتائج البحث ويُشارك بشكل جذّاب.", tr: "Sitenin arama sonuçlarında çıkması ve şık paylaşılması için ayar.", en: "Setting up the site to rank in search and share attractively." },
   },
