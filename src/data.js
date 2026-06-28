@@ -122,7 +122,7 @@ export const services = [
   {
     price: 6, unit: { ar: "/ صورة", tr: "/ görsel", en: "/ photo" },
     name: { ar: "صور منتجات احترافية", tr: "Profesyonel ürün görselleri", en: "Professional product photos" },
-    desc: { ar: "صور عالية الجودة لمنتجاتك بالذكاء الاصطناعي — بدون جلسة تصوير.", tr: "Yapay zekâ ile yüksek kaliteli ürün görselleri — çekim gerekmez.", en: "High-quality AI product photos — no photoshoot needed." },
+    desc: { ar: "صور احترافية عالية الجودة لمنتجاتك تبرز تفاصيلها وتجذب الزبون.", tr: "Ürünlerinizin detaylarını öne çıkaran yüksek kaliteli profesyonel görseller.", en: "High-quality professional photos that highlight your products and attract customers." },
   },
   {
     price: 0,
