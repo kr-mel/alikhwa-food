@@ -505,7 +505,7 @@ body, .header, .card, .svc-card, .why__card, .review, .steps li, .footer, .ticke
   .why__grid, .products__grid, .svc-grid, .reviews__grid {
     display: flex; gap: 14px; overflow-x: auto; overflow-y: visible;
     scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-    margin-inline: -5%; padding: 6px 5% 18px; scrollbar-width: none;
+    margin-inline: 0; padding: 6px 2px 18px; scrollbar-width: none;
   }
   .why__grid::-webkit-scrollbar, .products__grid::-webkit-scrollbar,
   .svc-grid::-webkit-scrollbar, .reviews__grid::-webkit-scrollbar { display: none; }

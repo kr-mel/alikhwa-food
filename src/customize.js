@@ -56,9 +56,9 @@ const el = (h) => { const t = document.createElement("template"); t.innerHTML = 
 
 const css = `
 #scrollProgress{position:fixed;top:0;inset-inline-start:0;height:3px;width:0;z-index:80;background:linear-gradient(90deg,var(--amber-500),var(--amber-600));transition:width .1s linear}
-.cz-btn{position:fixed;inset-inline-start:50%;transform:translateX(-50%);bottom:18px;z-index:62;background:var(--olive-900);color:var(--bone);border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;padding:11px 22px;border-radius:999px;box-shadow:var(--shadow);transition:transform .2s}
+.cz-btn{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:62;background:var(--olive-900);color:var(--bone);border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;padding:11px 22px;border-radius:999px;box-shadow:var(--shadow);transition:transform .2s}
 .cz-btn:hover{transform:translateX(-50%) translateY(-2px)}
-.cz-panel{position:fixed;inset-inline-start:50%;transform:translateX(-50%) translateY(20px);bottom:70px;z-index:63;width:min(340px,calc(100vw - 32px));max-height:78vh;overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:20px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.cz-panel{position:fixed;left:50%;transform:translateX(-50%) translateY(20px);bottom:70px;z-index:63;width:min(340px,calc(100vw - 32px));max-height:78vh;overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:20px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
 .cz-panel.open{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
 .cz-panel h4{font-family:var(--font-head);color:var(--olive-900);margin-bottom:4px;font-size:1.15rem}
 .cz-hint{color:var(--ink-soft);font-size:.82rem;margin-bottom:16px}
