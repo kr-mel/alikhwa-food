@@ -111,11 +111,13 @@ export const serviceCurrency = "$";
 export const services = [
   {
     price: 150, featured: true,
+    billing: { ar: "دفعة تأسيس · لمرة واحدة", tr: "Kurulum · tek seferlik", en: "Setup · one-time" },
     name: { ar: "موقع متجر احترافي", tr: "Profesyonel mağaza sitesi", en: "Professional store website" },
     desc: { ar: "صفحة واحدة سريعة وأنيقة، متجاوبة مع الموبايل، باسمك وألوانك.", tr: "Tek sayfa, hızlı ve şık, mobil uyumlu, adınız ve renklerinizle.", en: "Fast, elegant one-page site, mobile-friendly, in your name and colors." },
   },
   {
     price: 100, featured: true,
+    billing: { ar: "دفعة تأسيس · لمرة واحدة", tr: "Kurulum · tek seferlik", en: "Setup · one-time" },
     name: { ar: "مساعد ذكي (بوت)", tr: "Akıllı asistan (bot)", en: "Smart assistant (bot)" },
     desc: { ar: "يرد على زبائنك ٢٤/٧ بالعربي والتركي والإنجليزي: أسعار، توصيل، استفسارات.", tr: "Müşterilerinize 7/24 Arapça, Türkçe ve İngilizce yanıt verir.", en: "Replies to your customers 24/7 in Arabic, Turkish and English." },
   },
@@ -131,11 +133,13 @@ export const services = [
   },
   {
     price: 60, unit: { ar: "/ سنة", tr: "/ yıl", en: "/ year" },
+    billing: { ar: "اشتراك · سنوي", tr: "abonelik · yıllık", en: "subscription · yearly" },
     name: { ar: "استضافة ونشر", tr: "Barındırma ve yayın", en: "Hosting & publishing" },
     desc: { ar: "رفع الموقع أونلاين برابط خاص + تجديد سنوي.", tr: "Siteyi özel bir bağlantıyla yayına alma + yıllık yenileme.", en: "Publishing the site with a dedicated link + yearly renewal." },
   },
   {
     price: 55,
+    billing: { ar: "دفعة تأسيس · لمرة واحدة", tr: "Kurulum · tek seferlik", en: "Setup · one-time" },
     name: { ar: "تحسين الظهور بجوجل (SEO)", tr: "Google görünürlüğü (SEO)", en: "Google visibility (SEO)" },
     desc: { ar: "إعداد الموقع ليظهر بنتائج البحث ويُشارك بشكل جذّاب.", tr: "Sitenin arama sonuçlarında çıkması ve şık paylaşılması için ayar.", en: "Setting up the site to rank in search and share attractively." },
   },

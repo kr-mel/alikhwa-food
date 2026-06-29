@@ -116,6 +116,7 @@ function serviceCard(s, i) {
       <h3 class="svc-name">${t(s.name, lang)}</h3>
       <p class="svc-desc">${t(s.desc, lang)}</p>
       ${price}
+      ${s.billing ? `<span class="svc-billing">${t(s.billing, lang)}</span>` : ""}
       <button class="btn svc-add${added ? " is-added" : ""}" data-i="${i}">${added ? UI[lang].services.added : UI[lang].services.add}</button>
     </article>`;
 }

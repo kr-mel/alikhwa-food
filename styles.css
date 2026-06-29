@@ -520,3 +520,6 @@ body, .header, .card, .svc-card, .why__card, .review, .steps li, .footer, .ticke
   .hero { padding-top: 24px; }
   .section-head { margin-bottom: 28px; }
 }
+
+/* نوع الدفع تحت سعر الخدمة */
+.svc-billing { display: block; font-size: 0.78rem; font-weight: 700; color: var(--amber-600); margin-top: -2px; }

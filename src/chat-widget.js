@@ -33,7 +33,7 @@ const css = `
 .cw-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--bone,#f7f3ea)}
 .cw-msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:.93rem;line-height:1.6}
 .cw-msg.bot{background:#fff;border:1px solid var(--line,#e7dec9);align-self:flex-start;border-bottom-inline-start-radius:4px}
-.cw-msg.me{background:var(--amber-500,#e0a43c);color:var(--olive-900,#2c3315);align-self:flex-end;border-bottom-inline-end-radius:4px}
+.cw-msg.me{background:var(--amber-500,#e0a43c);color:var(--on-accent,#2c3315);align-self:flex-end;border-bottom-inline-end-radius:4px}
 .cw-foot{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line,#e7dec9);background:var(--paper,#fffdf8)}
 .cw-foot input{flex:1;font-family:inherit;font-size:.93rem;padding:10px 14px;border:1px solid var(--line,#e7dec9);border-radius:999px;outline:none}
 .cw-foot input:focus{border-color:var(--amber-500,#e0a43c)}
